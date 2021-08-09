@@ -1,0 +1,137 @@
+CREATE TABLE S (
+       S#     CHAR(3)    PRIMARY KEY,
+       SNAME CHAR(5),
+       STATUS NUMBER(2),
+       CITY  CHAR(7));
+
+CREATE TABLE SP (
+       S#   CHAR(3)    NOT NULL REFERENCES S(S#),
+       P#   CHAR(3)    NOT NULL REFERENCES P(P#),
+       QTY  NUMBER(5),
+       PRIMARY KEY (S#,P#),
+       CHECK (QTY>10));
+
+혹은
+
+CREATE TABLE SP (
+       S#   CHAR(3),
+       P#   CHAR(3),
+       QTY  NUMBER(5),
+       PRIMARY KEY (S#,P#),
+       FOREIGN KEY(S#) REFERENCES S,
+       FOREIGN KEY(P#) REFERENCES P,
+       CHECK (QTY>10));
+
+
+CREATE TABLE P (
+       P#     CHAR(3)  NOT NULL PRIMARY KEY,
+       PNAME  CHAR(5),
+       COLOR  CHAR(5),
+       WEIGHT NUMBER(3),
+       CITY  CHAR(7));
+
+INSERT INTO S VALUES ('S1','HONG','20','SEOUL');
+INSERT INTO S VALUES ('S2','SON', '10','PUSAN');
+INSERT INTO S VALUES ('S3','PARK','30','PUSAN');
+INSERT INTO S VALUES ('S4','SHIN','20','SEOUL');
+INSERT INTO S VALUES ('S5','BAHN','30','KYUNGJU');
+
+INSERT INTO SP VALUES ('S1','P1',300);
+INSERT INTO SP VALUES ('S1','P2',200);
+INSERT INTO SP VALUES ('S1','P3',400);
+INSERT INTO SP VALUES ('S1','P4',200);
+INSERT INTO SP VALUES ('S1','P5',100);
+INSERT INTO SP VALUES ('S1','P6',100);
+INSERT INTO SP VALUES ('S2','P1',300);
+INSERT INTO SP VALUES ('S2','P2',400);
+INSERT INTO SP VALUES ('S3','P2',200);
+INSERT INTO SP VALUES ('S4','P2',200);
+INSERT INTO SP VALUES ('S4','P4',300);
+INSERT INTO SP VALUES ('S4','P5',400);
+
+INSERT INTO P VALUES ('P1', 'NUT',   'RED',   12, 'SEOUL');
+INSERT INTO P VALUES ('P2', 'BOLT',  'GREEN', 17, 'PUSAN');
+INSERT INTO P VALUES ('P3', 'SCREW', 'BLUE',  17, 'KWANGJU');
+INSERT INTO P VALUES ('P4', 'SCREW', 'RED',   14, 'SEOUL');
+INSERT INTO P VALUES ('P5', 'CAM',   'BLUE',  12, 'PUSAN');
+INSERT INTO P VALUES ('P6', 'COCK',  'RED',   19, 'SEOUL');
+
+
+
+
+
+
+
+=============================================================
+질의예제 1
+"너트를 공급하는 공급자 이름"
+
+질의예제 2
+"색깔이 빨간 부품을 공급하는 공급자 이름"
+
+질의예제 3
+"부품 P2를 공급하지 않는 공급자 이름"
+
+질의예제 4
+"어떠한 부품도 공급하지 않는 공급자의 이름
+
+질의예제5
+"같은 도시에 사는 공급자 이름"
+
+질의예제 6
+"모든 부품을 공급하는 공급자의 이름"
+
+질의 예제7
+"부품별 공급량"
+
+질의 예제 8
+"총량이 500보다 큰 부품별 공급량"
+=============================================================
+
+무결성 테스트
+
+1. 개체무결성
+
+  INSERT INTO S VALUES ('S1','KWON','20','SEOUL');
+  -->PRIMARY KEY는 유일해야함
+
+  INSERT INTO S(SNAME,STATUS, CITY) VALUES ('KWON','20','SEOUL');
+  -->PRIMARY KEY는 NOT NULL 이어야 함
+
+2. 참조무결성
+
+  INSERT INTO SP VALUES ('S6','P5',400);
+  -->FOREIGN KEY는 참조하는 값과 일치해야함
+
+  DELETE FROM S
+  WHERE S#='S1';
+  -->FOREIGN KEY에 의하여 참조참조받는 KEY는 삭제할 수 없다!!!
+
+***** FOREIGN KEY OPTION   ****
+ON DELETE CASCADE (혹은 RESTRICT)
+ON UPDATE CASCADE (혹은 RESTRICT)
+
+CASCADE : 연쇄적 실행
+RESTRICT : 실행 제한 (Default)
+
+CREATE TABLE SP (
+       S#   CHAR(3),
+       P#   CHAR(3),
+       QTY  NUMBER(5),
+       PRIMARY KEY (S#,P#),
+       FOREIGN KEY(S#) REFERENCES S
+             ON DELETE CASCADE
+             ON UPDATE CASCADE,
+       FOREIGN KEY(P#) REFERENCES P
+             ON DELETE CASCADE
+             ON UPDATE CASCADE,
+       CHECK (QTY>10));
+
+3. 도메인 무결성
+
+INSERT INTO SP VALUES ('S4','P5',5);
+INSERT INTO SP VALUES ('S4','P5','A100');
+  -->도메인에서 벗어나는 값은 삽입 불가!
+
+
+CREATE VIEW ....

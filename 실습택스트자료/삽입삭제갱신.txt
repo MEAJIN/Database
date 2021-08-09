@@ -1,0 +1,87 @@
+TUPLE의 추가(37쪽)
+
+INSERT INTO DEPT(DEPTNO, DNAME, LOC)
+VALUES (50,'DEVELOPMENT', 'DETROIT');
+
+모든 항목에대한 삽입은 열명 생략 가능
+INSERT INTO DEPT
+VALUES (50,'DEVELOPMENT', 'DETROIT');
+
+NULL값의 입력
+
+암시적 방법
+INSERT INTO DEPT(DEPTNO, DNAME)
+VALUES (60, 'MIS');
+
+명시적방법
+INSERT INTO DEPT
+VALUES (70,'FINANCE', NULL);
+
+특수값 삽입
+INSERT INTO EMP
+VALUES (7196,'GREEN','SALESMAN',7782,SYSDATE,2000,NULL,10);
+
+변수 이용하기
+INSERT INTO DEPT(DEPTNO, DNAME, LOC)
+VALUES (&DEPTID, &DEPARTNAME, &LOCATION);
+
+입력시 인용부호를 안쓰려면...
+INSERT INTO DEPT(DEPTNO, DNAME, LOC)
+VALUES (&DEPTID, '&DEPARTNAME', '&LOCATION');
+
+다른테이블의 내용 복사
+
+CREATE TABLE MANAGER (
+ ID                 NUMBER(4) PRIMARY KEY,
+ NAME               VARCHAR2(10),
+ SALARY             NUMBER(7,2),
+ HIREDATE           DATE);
+
+INSERT INTO MANAGER(ID, NAME, SALARY, HIREDATE)
+            (SELECT EMPNO, ENAME, SAL, HIREDATE
+	     FROM EMP
+	     WHERE JOB='MANAGER');
+
+========================================
+갱신 (UPDATE, 38쪽)
+
+UPDATE EMP
+SET DEPTNO =20, SAL =500
+WHERE EMPNO = 7782;
+
+주의!! 조건이 생략되면 모든행을 갱신
+UPDATE EMP
+SET DEPTNO =20, SAL =500;
+
+서브퀴리에 의한 갱신
+
+UPDATE EMP
+SET (JOB,DEPTNO) = (SELECT JOB,DEPTNO
+		    FROM EMP
+		    WHERE EMPNO =7499)
+WHERE EMPNO = 7698;
+========================================
+
+행의 삭제  ( 38쪽)
+
+DELETE FROM DEPT
+WHERE DEPTNO = 40;
+
+참조무결성 위배의 예
+DELETE FROM DEPT
+WHERE DEPTNO = 30;
+
+========================================
+트랜잭션
+1) 시작 : 실행가능한 SQL문장이 처음 실행될때
+2) 종료 : 다음의 이벤트 중 어느하나
+	-COMMIT/ROLLBACK (명시적종료)
+	-DDL/DCL의 실행 (자동커밋)
+	-사용자 종료
+	-시스템 파손
+
+SAVEPOINT : 일정시점에 MARKER를 표시한다
+예
+SAVEPOINT T1;
+...
+ROLLBACK TO T1;

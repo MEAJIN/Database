@@ -1,0 +1,115 @@
+뷰(VIEW)
+
+DB OBJECT의 종류 : 테이블, 뷰, 시퀀스, 인덱스, 동의어
+
+뷰의 목적
+1. 액세스 제한
+2. 질의를 간단히 (조인등의 질의를 미리 뷰로 정의하면 질의가 단순해짐
+3. 데이터의 독립성 보장 (테이블 구조가 바뀌어도 응용프로그램에 일정한 형식 제공)
+4. 동일한 데이터를 사용자별로 다르게 나타남 (예: USER_TABLES)
+
+CREATE VIEW EMP_10 AS
+  SELECT EMPNO, ENAME, JOB
+  FROM EMP
+  WHERE DEPTNO = 10;
+
+SELECT * FROM EMP_10;
+다음을 수행하면???
+
+UPDATE EMP_10
+SET ENAME='CCC';
+
+SELECT * FROM EMP; 
+
+뷰의 좋은 예 한가지
+
+CREATE VIEW MY_TABLE AS 
+  SELECT TABLE_NAME
+  FROM USER_TABLES;
+
+SELECT * FROM MY_TABLE;
+
+
+복합뷰
+
+create view summary as
+select a.empno,a.ename, b.dname, a.job, d.ename mgr, a.hiredate, a.sal, c.grade, a.comm
+from emp a, dept b, salgrade c, emp d
+where   (a.deptno = b.deptno)
+    and (a.sal between c.losal and c.hisal)
+    and (a.mgr=d.empno(+))
+order by a.empno;
+
+
+CREATE VIEW DEPT_SUM(NAME, MINSAL, MAXSAL, AVGSAL) AS
+   SELECT D.DNAME, MIN(E.SAL), MAX(E.SAL), AVG(E.SAL)
+   FROM EMP E, DEPT D
+   WHERE E.DEPTNO=D.DEPTNO
+   GROUP BY D.DNAME;
+
+SELECT * FROM DEPT_SUM;
+
+뷰의 삭제
+DROP VIEW EMP_10;
+DROP VIEW DEPT_SUM;
+
+
+SEQUENCE : 자동으로 유일번호 생성
+
+CREATE SEQUENCE dept_deptno
+   INCREMENT BY 1
+   START WITH 91
+   MAXVALUE 100
+   NOCYCLE
+   NOCACHE;
+
+주의!! : PRIMARY KEY로 사용되는 시퀀스는 NOCYCLE
+
+SELECT sequence_name, min_value, max_value, increment_by, last_number
+FROM user_sequences;
+
+NEXTVAL과 CURRVAL : 다음생성 값과 현재의 값
+
+SELECT dept_deptno.CURRVAL 
+FROM DUAL;
+
+
+SELECT dept_deptno.NEXTVAL
+FROM DUAL;
+
+INSERT INTO dept(deptno,dname,loc)
+VALUES (dept_deptno.NEXTVAL, 'FINANCE', 'SAN FRANCISCO');
+
+SEQUENCE의 수정은 ALTER SEQUENCE로!!
+
+SEQUENCE의 삭제는 DROP SEQUENCE로!!
+
+DROP SEQUENCE DEPT_DEPTNO;
+
+INDEX
+1) 유일키를 정의 : UNIQUE, PRIMARY KEY 정의시 자동 생성
+2) 액세스 시간 단축 : B-TREE이용
+     작은 테이블, 질의의 조건으로 자주 이용되지 않는 열, 자주 갱신되는 테이블
+     에는 사용하지 않는 것이 바람직
+
+CREATE INDEX emp_ename_idx
+ON EMP(ENAME);
+
+INDEX의 삭제
+
+DROP INDEX emp_ename_idx;
+
+SELECT index_name
+     FROM USER_INDEXES 
+     WHERE table_name='EMP'; 
+
+
+SYNONYM(동의어)
+데이터베이스내에 별명(Alias)를 부여한다
+
+CREATE SYNONYM S_emp FOR SCOTT.EMP;
+
+SELECT * FROM S_EMP;
+
+삭제
+DROP SYNONYM S_emp;

@@ -1,0 +1,1618 @@
+JAEJIN@orcl>select table_name from user_tables;
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+BONUS                                                                                                                   
+SALGRADE                                                                                                                
+DUMMY                                                                                                                   
+S                                                                                                                       
+P                                                                                                                       
+SP                                                                                                                      
+DEPT                                                                                                                    
+EMP                                                                                                                     
+학과                                                                                                                    
+교수                                                                                                                    
+학생                                                                                                                    
+과목                                                                                                                    
+수강                                                                                                                    
+담당                                                                                                                    
+
+14 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>DROP TABLE 수강;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>DROP TABLE 과목;
+DROP TABLE 과목
+           *
+1행에 오류:
+ORA-02449: 외래 키에 의해 참조되는 고유/기본 키가 테이블에 있습니다 
+
+
+JAEJIN@orcl>DROP TABLE 학생;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>ALTER TABLE 교수  DROP CONSTRAINT 교수_FK;
+
+테이블이 변경되었습니다.
+
+JAEJIN@orcl>ALTER TABLE 학과  DROP CONSTRAINT 학과_FK;
+
+테이블이 변경되었습니다.
+
+JAEJIN@orcl>DROP TABLE 교수;
+DROP TABLE 교수
+           *
+1행에 오류:
+ORA-02449: 외래 키에 의해 참조되는 고유/기본 키가 테이블에 있습니다 
+
+
+JAEJIN@orcl>DROP TABLE 학과;
+DROP TABLE 학과
+           *
+1행에 오류:
+ORA-02449: 외래 키에 의해 참조되는 고유/기본 키가 테이블에 있습니다 
+
+
+JAEJIN@orcl>select table_name from user_tables;
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+BONUS                                                                                                                   
+SALGRADE                                                                                                                
+DUMMY                                                                                                                   
+S                                                                                                                       
+P                                                                                                                       
+SP                                                                                                                      
+DEPT                                                                                                                    
+EMP                                                                                                                     
+학과                                                                                                                    
+교수                                                                                                                    
+과목                                                                                                                    
+담당                                                                                                                    
+
+12 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>DROP TABLE 학과;
+DROP TABLE 학과
+           *
+1행에 오류:
+ORA-02449: 외래 키에 의해 참조되는 고유/기본 키가 테이블에 있습니다 
+
+
+JAEJIN@orcl>DROP TABLE 학과 cascade;
+DROP TABLE 학과 cascade
+                      *
+1행에 오류:
+ORA-00905: 누락된 키워드 
+
+
+JAEJIN@orcl>DROP TABLE 학과 cascade constaints;
+DROP TABLE 학과 cascade constaints
+                        *
+1행에 오류:
+ORA-00905: 누락된 키워드 
+
+
+JAEJIN@orcl>drop table 교수 cascade CONSTRAINT
+  2  ;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>drop table 학과 cascade CONSTRAINT;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>select table_name from user_tables;
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+BONUS                                                                                                                   
+SALGRADE                                                                                                                
+DUMMY                                                                                                                   
+S                                                                                                                       
+P                                                                                                                       
+SP                                                                                                                      
+DEPT                                                                                                                    
+EMP                                                                                                                     
+과목                                                                                                                    
+담당                                                                                                                    
+
+10 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>DROP TABLE 과목;
+DROP TABLE 과목
+           *
+1행에 오류:
+ORA-02449: 외래 키에 의해 참조되는 고유/기본 키가 테이블에 있습니다 
+
+
+JAEJIN@orcl>DROP TABLE 과목 cascade CONSTRAINT;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>DROP TABLE 담당;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>select table_name from user_tables;
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+BONUS                                                                                                                   
+SALGRADE                                                                                                                
+DUMMY                                                                                                                   
+S                                                                                                                       
+P                                                                                                                       
+SP                                                                                                                      
+DEPT                                                                                                                    
+EMP                                                                                                                     
+
+8 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+
+JAEJIN@orcl>INSERT INTO DEPT(DEPTNO, DNAME, LOC)
+  2  VALUES (50,'DEVELOPMENT', 'DETROIT');
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+
+JAEJIN@orcl>INSERT INTO DEPT
+  2  VALUES (60,'DEVELOPMENT', 'DETROIT');
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO DEPT
+  2  ;
+
+*
+2행에 오류:
+ORA-00926: 누락된 VALUES 키워드 
+
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+        60 DEVELOPMENT    DETROIT                                                                                       
+
+6 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>INSERT INTO DEPT(DEPTNO, DNAME) VALUES (60, 'MIS');
+INSERT INTO DEPT(DEPTNO, DNAME) VALUES (60, 'MIS')
+*
+1행에 오류:
+ORA-00001: 무결성 제약 조건(JAEJIN.SYS_C0011956)에 위배됩니다 
+
+
+JAEJIN@orcl>INSERT INTO DEPT(DEPTNO, DNAME) VALUES (70, 'MIS');
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+        60 DEVELOPMENT    DETROIT                                                                                       
+        70 MIS                                                                                                          
+
+7 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>INSERT INTO DEPT VALUES (80,'FINANCE', NULL);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+        60 DEVELOPMENT    DETROIT                                                                                       
+        70 MIS                                                                                                          
+        80 FINANCE                                                                                                      
+
+8 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>INSERT INTO DEPT(DEPTNO, DNAME, LOC) VALUES (&DEPTID, &DEPARTNAME, &LOCATION);
+deptid의 값을 입력하십시오: 90
+departname의 값을 입력하십시오: 'a'
+location의 값을 입력하십시오: 'ina'
+구   1: INSERT INTO DEPT(DEPTNO, DNAME, LOC) VALUES (&DEPTID, &DEPARTNAME, &LOCATION)
+신   1: INSERT INTO DEPT(DEPTNO, DNAME, LOC) VALUES (90, 'a', 'ina')
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+        60 DEVELOPMENT    DETROIT                                                                                       
+        70 MIS                                                                                                          
+        80 FINANCE                                                                                                      
+        90 a              ina                                                                                           
+
+9 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>INSERT INTO MANAGER(ID, NAME, SALARY, HIREDATE) (SELECT EMPNO, ENAME, SAL, HIREDATE FROM EMP WHERE JOB='MANAGER');
+INSERT INTO MANAGER(ID, NAME, SALARY, HIREDATE) (SELECT EMPNO, ENAME, SAL, HIREDATE FROM EMP WHERE JOB='MANAGER')
+            *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다 
+
+
+JAEJIN@orcl>CREATE TABLE MANAGER (
+  2   ID                 NUMBER(4) PRIMARY KEY,
+  3   NAME               VARCHAR2(10),
+  4   SALARY             NUMBER(7,2),
+  5   HIREDATE           DATE);
+
+테이블이 생성되었습니다.
+
+JAEJIN@orcl>INSERT INTO MANAGER(ID, NAME, SALARY, HIREDATE)
+  2              (SELECT EMPNO, ENAME, SAL, HIREDATE
+  3       FROM EMP
+  4       WHERE JOB='MANAGER');
+
+0 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from manager;
+
+선택된 레코드가 없습니다.
+
+JAEJIN@orcl>INSERT INTO MANAGER(ID, NAME, SALARY, HIREDATE)
+  2              (SELECT EMPNO, ENAME, SAL, HIREDATE
+  3       FROM EMP
+  4       WHERE JOB='MANAGER');
+
+0 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>
+JAEJIN@orcl>select * from manager;
+
+선택된 레코드가 없습니다.
+
+JAEJIN@orcl>INSERT INTO MANAGER(ID, NAME, SALARY, HIREDATE)
+  2              (SELECT EMPNO, ENAME, SAL, HIREDATE
+  3       FROM EMP WHERE JOB='MANAGER');
+
+0 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from manager;
+
+선택된 레코드가 없습니다.
+
+JAEJIN@orcl>select * from MANAGER;
+
+선택된 레코드가 없습니다.
+
+JAEJIN@orcl>select * from emp;
+
+선택된 레코드가 없습니다.
+
+JAEJIN@orcl>select * from manager;JAEJIN@orcl>select table_name from user_tables;
+select * from manager;JAEJIN@orcl>select table_name from user_tables
+                     *
+1행에 오류:
+ORA-00911: 문자가 부적합합니다 
+
+
+JAEJIN@orcl>JAEJIN@orcl>select table_name from user_tables;
+SP2-0734: "JAEJIN@orc..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+JAEJIN@orcl>select table_name from user_tables;
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+BONUS                                                                                                                   
+SALGRADE                                                                                                                
+DUMMY                                                                                                                   
+S                                                                                                                       
+P                                                                                                                       
+SP                                                                                                                      
+DEPT                                                                                                                    
+EMP                                                                                                                     
+MANAGER                                                                                                                 
+
+9 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>select * from dept
+  2  ;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+        60 DEVELOPMENT    DETROIT                                                                                       
+        70 MIS                                                                                                          
+        80 FINANCE                                                                                                      
+        90 a              ina                                                                                           
+
+9 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7369, 'SMITH',  'CLERK',     7902, '80-12-17',  800, NULL, 20);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7499, 'ALLEN',  'SALESMAN',  7698, '81-02-20', 1600,  300, 30);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7521, 'WARD',   'SALESMAN',  7698, '81-02-22', 1250,  500, 30);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7566, 'JONES',  'MANAGER',   7839, '81-04-02', 2975, NULL, 20);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7654, 'MARTIN', 'SALESMAN',  7698, '81-09-28', 1250, 1400, 30);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7698, 'BLAKE',  'MANAGER',   7839, '81-05-01',  2850, NULL, 30);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7782, 'CLARK',  'MANAGER',   7839, '81-09-09',  2450, NULL, 10);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7788, 'SCOTT',  'ANALYST',   7566, '82-12-09', 3000, NULL, 20);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7839, 'KING',   'PRESIDENT', NULL, '81-11-17', 5000, NULL, 10);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7844, 'TURNER', 'SALESMAN',  7698, '81-09-08',  1500,    0, 30);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7876, 'ADAMS',  'CLERK',     7788, '83-01-12', 1100, NULL, 20);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7900, 'JAMES',  'CLERK',     7698, '81-12-03',   950, NULL, 30);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7902, 'FORD',   'ANALYST',   7566, '81-12-03',  3000, NULL, 20);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO EMP VALUES (7934, 'MILLER', 'CLERK',     7782, '82-01-23', 1300, NULL, 10);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>INSERT INTO MANAGER(ID, NAME, SALARY, HIREDATE) (SELECT EMPNO, ENAME, SAL, HIREDATE FROM EMP WHERE JOB='MANAGER');
+
+3 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+        60 DEVELOPMENT    DETROIT                                                                                       
+        70 MIS                                                                                                          
+        80 FINANCE                                                                                                      
+        90 a              ina                                                                                           
+
+9 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>select * from manager;
+
+        ID NAME           SALARY HIREDATE                                                                               
+---------- ---------- ---------- --------                                                                               
+      7566 JONES            2975 81/04/02                                                                               
+      7698 BLAKE            2850 81/05/01                                                                               
+      7782 CLARK            2450 81/09/09                                                                               
+
+JAEJIN@orcl>select sysdate from dual;
+
+SYSDATE                                                                                                                 
+--------                                                                                                                
+20/10/15                                                                                                                
+
+JAEJIN@orcl>select fm(sysdate,yyyy) from dual;
+select fm(sysdate,yyyy) from dual
+       *
+1행에 오류:
+ORA-00904: "FM": 부적합한 식별자 
+
+
+JAEJIN@orcl>select m(sysdate,yyyy) from dual;
+select m(sysdate,yyyy) from dual
+       *
+1행에 오류:
+ORA-00904: "M": 부적합한 식별자 
+
+
+JAEJIN@orcl>INSERT INTO EMP
+  2  VALUES (7196,'GREEN','SALESMAN',7782,SYSDATE,2000,NULL,10);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from emp
+  2  ;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO                                    
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------                                    
+      7369 SMITH      CLERK           7902 80/12/17        800                    20                                    
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30                                    
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30                                    
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20                                    
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30                                    
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30                                    
+      7782 CLARK      MANAGER         7839 81/09/09       2450                    10                                    
+      7788 SCOTT      ANALYST         7566 82/12/09       3000                    20                                    
+      7839 KING       PRESIDENT            81/11/17       5000                    10                                    
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30                                    
+      7876 ADAMS      CLERK           7788 83/01/12       1100                    20                                    
+      7900 JAMES      CLERK           7698 81/12/03        950                    30                                    
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20                                    
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10                                    
+      7196 GREEN      SALESMAN        7782 20/10/15       2000                    10                                    
+
+15 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>create sequence dept_deptno
+  2  increment by 1
+  3  start with 91
+  4   maxvalue 100
+  5  nocycle
+  6  nocache;
+
+시퀀스가 생성되었습니다.
+
+JAEJIN@orcl>select dept_deptno NEXTVAL from daul
+  2  ;
+select dept_deptno NEXTVAL from daul
+                                *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다 
+
+
+JAEJIN@orcl>
+JAEJIN@orcl>select dept_deptno NEXTVAL from dual;
+select dept_deptno NEXTVAL from dual
+       *
+1행에 오류:
+ORA-00904: "DEPT_DEPTNO": 부적합한 식별자 
+
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        91                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        92                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        93                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        94                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        95                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        96                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        97                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        98                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+        99                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+       100                                                                                                              
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+select dept_deptno.NEXTVAL from dual
+*
+1행에 오류:
+ORA-08004: 시퀀스 DEPT_DEPTNO.NEXTVAL exceeds MAXVALUE은 사례로 될 수 없습니다 
+
+
+JAEJIN@orcl>select dept_deptno.NEXTVAL from dual;
+select dept_deptno.NEXTVAL from dual
+*
+1행에 오류:
+ORA-08004: 시퀀스 DEPT_DEPTNO.NEXTVAL exceeds MAXVALUE은 사례로 될 수 없습니다 
+
+
+JAEJIN@orcl>create sequence dept_deptno
+  2  increment by 1
+  3  start with 91
+  4   maxvalue 100
+  5  nocycle
+  6  nocache;
+create sequence dept_deptno
+                *
+1행에 오류:
+ORA-00955: 기존의 객체가 이름을 사용하고 있습니다. 
+
+
+JAEJIN@orcl>drop sequence dept_deptno;
+
+시퀀스가 삭제되었습니다.
+
+JAEJIN@orcl>create sequence dept_deptno
+  2  increment by 1
+  3  start with 91
+  4   maxvalue 100
+  5  nocycle
+  6  nocache;
+
+시퀀스가 생성되었습니다.
+
+JAEJIN@orcl>insert into dept VALUES (dept_deptno.NEXTVAL,'DEVELOPMENT', 'DETROIT');
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+        60 DEVELOPMENT    DETROIT                                                                                       
+        70 MIS                                                                                                          
+        80 FINANCE                                                                                                      
+        90 a              ina                                                                                           
+        91 DEVELOPMENT    DETROIT                                                                                       
+
+10 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>CREATE TABLE EMP_SUMMARY (
+  2          EMPNO    NUMBER(4),
+  3          ENAME    VARCHAR2(10),
+  4          JOB      VARCHAR2(9),
+  5          INCOME   NUMBER(7, 2),
+  6          DNAME    VARCHAR2(14)
+  7  CONSTRAINT ES_PK PRIMARY KEY (EMPNO));
+CONSTRAINT ES_PK PRIMARY KEY (EMPNO))
+                             *
+7행에 오류:
+ORA-00907: 누락된 우괄호 
+
+
+JAEJIN@orcl>CREATE TABLE EMP_SUMMARY (
+  2          EMPNO    NUMBER(4),
+  3          ENAME    VARCHAR2(10),
+  4          JOB      VARCHAR2(9),
+  5          INCOME   NUMBER(7, 2),
+  6          DNAME    VARCHAR2(14),
+  7  CONSTRAINT ES_PK PRIMARY KEY (EMPNO));
+
+테이블이 생성되었습니다.
+
+JAEJIN@orcl>select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO                                    
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------                                    
+      7369 SMITH      CLERK           7902 80/12/17        800                    20                                    
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30                                    
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30                                    
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20                                    
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30                                    
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30                                    
+      7782 CLARK      MANAGER         7839 81/09/09       2450                    10                                    
+      7788 SCOTT      ANALYST         7566 82/12/09       3000                    20                                    
+      7839 KING       PRESIDENT            81/11/17       5000                    10                                    
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30                                    
+      7876 ADAMS      CLERK           7788 83/01/12       1100                    20                                    
+      7900 JAMES      CLERK           7698 81/12/03        950                    30                                    
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20                                    
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10                                    
+      7196 GREEN      SALESMAN        7782 20/10/15       2000                    10                                    
+
+15 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>select * from depy;
+select * from depy
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다 
+
+
+JAEJIN@orcl>select * from dept;
+
+    DEPTNO DNAME          LOC                                                                                           
+---------- -------------- -------------                                                                                 
+        10 ACCOUNTING     NEW YORK                                                                                      
+        20 RESEARCH       DALLAS                                                                                        
+        30 SALES          CHICAGO                                                                                       
+        40 OPERATIONS     BOSTON                                                                                        
+        50 DEVELOPMENT    DETROIT                                                                                       
+        60 DEVELOPMENT    DETROIT                                                                                       
+        70 MIS                                                                                                          
+        80 FINANCE                                                                                                      
+        90 a              ina                                                                                           
+        91 DEVELOPMENT    DETROIT                                                                                       
+
+10 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>insert into EMP_SUMMARY (
+  2  SELECT e.empno, e.ename, e.job, e.sal*12+nvl(e.comm,0),d.dname
+  3  FROM emp e,(select dname
+  4  from dept) d);
+insert into EMP_SUMMARY (
+*
+1행에 오류:
+ORA-00001: 무결성 제약 조건(JAEJIN.ES_PK)에 위배됩니다 
+
+
+JAEJIN@orcl>insert into EMP_SUMMARY (
+  2  SELECT e.empno, e.ename, e.job, e.sal*12+nvl(e.comm,0),d.dname
+  3  FROM emp e,(select dname
+  4  from dept) d
+  5  where e.deptno=d.deptno);
+where e.deptno=d.deptno)
+               *
+5행에 오류:
+ORA-00904: "D"."DEPTNO": 부적합한 식별자 
+
+
+JAEJIN@orcl>insert into EMP_SUMMARY (
+  2  SELECT e.empno, e.ename, e.job, e.sal*12+nvl(e.comm,0),d.dname
+  3  FROM emp e,(select dname, deptno
+  4  from dept) d
+  5  where e.deptno=d.deptno);
+
+15 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from emp_summary;
+
+     EMPNO ENAME      JOB           INCOME DNAME                                                                        
+---------- ---------- --------- ---------- --------------                                                               
+      7369 SMITH      CLERK           9600 RESEARCH                                                                     
+      7499 ALLEN      SALESMAN       19500 SALES                                                                        
+      7521 WARD       SALESMAN       15500 SALES                                                                        
+      7566 JONES      MANAGER        35700 RESEARCH                                                                     
+      7654 MARTIN     SALESMAN       16400 SALES                                                                        
+      7698 BLAKE      MANAGER        34200 SALES                                                                        
+      7782 CLARK      MANAGER        29400 ACCOUNTING                                                                   
+      7788 SCOTT      ANALYST        36000 RESEARCH                                                                     
+      7839 KING       PRESIDENT      60000 ACCOUNTING                                                                   
+      7844 TURNER     SALESMAN       18000 SALES                                                                        
+      7876 ADAMS      CLERK          13200 RESEARCH                                                                     
+      7900 JAMES      CLERK          11400 SALES                                                                        
+      7902 FORD       ANALYST        36000 RESEARCH                                                                     
+      7934 MILLER     CLERK          15600 ACCOUNTING                                                                   
+      7196 GREEN      SALESMAN       24000 ACCOUNTING                                                                   
+
+15 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>UPDATE EMP_SUMMARY
+  2  SET (INCOME) = (SELECT income
+  3      FROM EMP_SUMMARY
+  4      WHERE Ename = 'allen')
+  5  WHERE Ename = 'smith;
+ERROR:
+ORA-01756: 단일 인용부를 지정해 주십시오 
+
+
+JAEJIN@orcl>UPDATE EMP_SUMMARY
+  2  SET (INCOME) = (SELECT income
+  3      FROM EMP_SUMMARY
+  4      WHERE ename = 'allen')
+  5  WHERE ename = 'smith;
+ERROR:
+ORA-01756: 단일 인용부를 지정해 주십시오 
+
+
+JAEJIN@orcl>UPDATE EMP_SUMMARY
+  2  SET (INCOME) = (SELECT income
+  3      FROM EMP_SUMMARY
+  4      WHERE ename = 'allen')
+  5  WHERE ename = 'smith';
+
+0 행이 갱신되었습니다.
+
+JAEJIN@orcl>UPDATE EMP_SUMMARY
+  2  SET (INCOME) = (SELECT income
+  3      FROM EMP_SUMMARY
+  4      WHERE ename = 'ALLEN')
+  5  WHERE ename = 'SMITH';
+
+1 행이 갱신되었습니다.
+
+JAEJIN@orcl>select * from emp_summary;
+
+     EMPNO ENAME      JOB           INCOME DNAME                                                                        
+---------- ---------- --------- ---------- --------------                                                               
+      7369 SMITH      CLERK          19500 RESEARCH                                                                     
+      7499 ALLEN      SALESMAN       19500 SALES                                                                        
+      7521 WARD       SALESMAN       15500 SALES                                                                        
+      7566 JONES      MANAGER        35700 RESEARCH                                                                     
+      7654 MARTIN     SALESMAN       16400 SALES                                                                        
+      7698 BLAKE      MANAGER        34200 SALES                                                                        
+      7782 CLARK      MANAGER        29400 ACCOUNTING                                                                   
+      7788 SCOTT      ANALYST        36000 RESEARCH                                                                     
+      7839 KING       PRESIDENT      60000 ACCOUNTING                                                                   
+      7844 TURNER     SALESMAN       18000 SALES                                                                        
+      7876 ADAMS      CLERK          13200 RESEARCH                                                                     
+      7900 JAMES      CLERK          11400 SALES                                                                        
+      7902 FORD       ANALYST        36000 RESEARCH                                                                     
+      7934 MILLER     CLERK          15600 ACCOUNTING                                                                   
+      7196 GREEN      SALESMAN       24000 ACCOUNTING                                                                   
+
+15 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO                                    
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------                                    
+      7369 SMITH      CLERK           7902 80/12/17        800                    20                                    
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30                                    
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30                                    
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20                                    
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30                                    
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30                                    
+      7782 CLARK      MANAGER         7839 81/09/09       2450                    10                                    
+      7788 SCOTT      ANALYST         7566 82/12/09       3000                    20                                    
+      7839 KING       PRESIDENT            81/11/17       5000                    10                                    
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30                                    
+      7876 ADAMS      CLERK           7788 83/01/12       1100                    20                                    
+      7900 JAMES      CLERK           7698 81/12/03        950                    30                                    
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20                                    
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10                                    
+      7196 GREEN      SALESMAN        7782 20/10/15       2000                    10                                    
+
+15 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno = (select empno
+  3  from emp
+  4  where sal >=2000);
+WHERE empno = (select empno
+               *
+2행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  from(select empno
+  3  from emp
+  4  where sal >=2000) e
+  5  WHERE empno = e.empno;
+from(select empno
+*
+2행에 오류:
+ORA-00933: SQL 명령어가 올바르게 종료되지 않았습니다 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY es,(select empno
+  2  from emp
+  3  where sal >=2000) e
+  4  WHERE es.empno = e.empno;
+DELETE FROM EMP_SUMMARY es,(select empno
+                          *
+1행에 오류:
+ORA-00933: SQL 명령어가 올바르게 종료되지 않았습니다 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY es
+  2  WHERE es.empno = (select empno
+  3  from emp
+  4  where sal >=2000);
+WHERE es.empno = (select empno
+                  *
+2행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno = (select empno
+  3  from emp
+  4  where sal >=2000);
+WHERE empno = (select empno
+               *
+2행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno = (select empno
+  3  from emp
+  4  where sal >= 2000);
+WHERE empno = (select empno
+               *
+2행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno = in(select empno
+  3  from emp
+  4  where sal >= 2000);
+WHERE empno = in(select empno
+              *
+2행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno = in (select empno
+  3  from emp
+  4  where sal >= 2000);
+WHERE empno = in (select empno
+              *
+2행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno = in (select empno from emp where sal >= 2000);
+WHERE empno = in (select empno from emp where sal >= 2000)
+              *
+2행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno = IN (select empno from emp where sal >= 2000);
+WHERE empno = IN (select empno from emp where sal >= 2000)
+              *
+2행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+JAEJIN@orcl>WHERE empno = IN(select empno from emp where sal >= 2000);
+SP2-0734: "WHERE empn..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno = IN(select empno from emp where sal >= 2000);
+WHERE empno = IN(select empno from emp where sal >= 2000)
+              *
+2행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno IN(select empno from emp where sal >= 2000);
+
+7 행이 삭제되었습니다.
+
+JAEJIN@orcl>select * from emp_summary;
+
+     EMPNO ENAME      JOB           INCOME DNAME                                                                        
+---------- ---------- --------- ---------- --------------                                                               
+      7369 SMITH      CLERK          19500 RESEARCH                                                                     
+      7499 ALLEN      SALESMAN       19500 SALES                                                                        
+      7521 WARD       SALESMAN       15500 SALES                                                                        
+      7654 MARTIN     SALESMAN       16400 SALES                                                                        
+      7844 TURNER     SALESMAN       18000 SALES                                                                        
+      7876 ADAMS      CLERK          13200 RESEARCH                                                                     
+      7900 JAMES      CLERK          11400 SALES                                                                        
+      7934 MILLER     CLERK          15600 ACCOUNTING                                                                   
+
+8 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO                                    
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------                                    
+      7369 SMITH      CLERK           7902 80/12/17        800                    20                                    
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30                                    
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30                                    
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20                                    
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30                                    
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30                                    
+      7782 CLARK      MANAGER         7839 81/09/09       2450                    10                                    
+      7788 SCOTT      ANALYST         7566 82/12/09       3000                    20                                    
+      7839 KING       PRESIDENT            81/11/17       5000                    10                                    
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30                                    
+      7876 ADAMS      CLERK           7788 83/01/12       1100                    20                                    
+      7900 JAMES      CLERK           7698 81/12/03        950                    30                                    
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20                                    
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10                                    
+      7196 GREEN      SALESMAN        7782 20/10/15       2000                    10                                    
+
+15 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>CREATE TABLE 주문
+  2      (주문번호 CHAR(12));
+
+테이블이 생성되었습니다.
+
+JAEJIN@orcl>create sequence e_n
+  2  increment by 1
+  3  start with 1
+  4   maxvalue 100
+  5  nocycle
+  6  nocache;
+
+시퀀스가 생성되었습니다.
+
+JAEJIN@orcl>drop sequence e_n;
+
+시퀀스가 삭제되었습니다.
+
+JAEJIN@orcl>create sequence e_n
+  2  increment by 1
+  3  start with 001
+  4   maxvalue 100
+  5  nocycle
+  6  nocache;
+
+시퀀스가 생성되었습니다.
+
+JAEJIN@orcl>SELECT e_n.a FROM DUAL;
+SELECT e_n.a FROM DUAL
+       *
+1행에 오류:
+ORA-00904: "E_N"."A": 부적합한 식별자 
+
+
+JAEJIN@orcl>SELECT e_n.nexyval FROM DUAL;
+SELECT e_n.nexyval FROM DUAL
+       *
+1행에 오류:
+ORA-00904: "E_N"."NEXYVAL": 부적합한 식별자 
+
+
+JAEJIN@orcl>SELECT e_n.nextval FROM DUAL;
+
+   NEXTVAL                                                                                                              
+----------                                                                                                              
+         1                                                                                                              
+
+JAEJIN@orcl>SELECT lpad(e_n.nextval,3,'0') from dual;
+
+LPAD(E                                                                                                                  
+------                                                                                                                  
+002                                                                                                                     
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0' from dual);
+insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0' from dual)
+                                                         *
+1행에 오류:
+ORA-00907: 누락된 우괄호 
+
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT sysdate||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from 부품;
+select * from 부품
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다 
+
+
+JAEJIN@orcl>select * from 주문;
+
+주문번호                                                                                                                
+------------                                                                                                            
+20/10/15004                                                                                                             
+20/10/15005                                                                                                             
+20/10/15006                                                                                                             
+20/10/15007                                                                                                             
+20/10/15008                                                                                                             
+20/10/15009                                                                                                             
+20/10/15010                                                                                                             
+20/10/15011                                                                                                             
+20/10/15012                                                                                                             
+20/10/15013                                                                                                             
+20/10/15014                                                                                                             
+20/10/15015                                                                                                             
+20/10/15016                                                                                                             
+20/10/15017                                                                                                             
+20/10/15018                                                                                                             
+
+15 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd'))||lpad(e_n.nextval,3,'0') from dual);
+insert into 주문 (SELECT to_char(sysdate,'yyyymmdd'))||lpad(e_n.nextval,3,'0') from dual)
+                                                    *
+1행에 오류:
+ORA-00923: FROM 키워드가 필요한 위치에 없습니다. 
+
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from 부품;
+select * from 부품
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다 
+
+
+JAEJIN@orcl>select * from 주문;
+
+주문번호                                                                                                                
+------------                                                                                                            
+20/10/15004                                                                                                             
+20/10/15005                                                                                                             
+20/10/15006                                                                                                             
+20/10/15007                                                                                                             
+20/10/15008                                                                                                             
+20/10/15009                                                                                                             
+20/10/15010                                                                                                             
+20/10/15011                                                                                                             
+20/10/15012                                                                                                             
+20/10/15013                                                                                                             
+20/10/15014                                                                                                             
+20/10/15015                                                                                                             
+20/10/15016                                                                                                             
+20/10/15017                                                                                                             
+20/10/15018                                                                                                             
+20201015019                                                                                                             
+20201015020                                                                                                             
+20201015021                                                                                                             
+20201015022                                                                                                             
+20201015023                                                                                                             
+20201015024                                                                                                             
+20201015025                                                                                                             
+20201015026                                                                                                             
+20201015027                                                                                                             
+20201015028                                                                                                             
+20201015029                                                                                                             
+
+26 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>DELETE FROM DEPT
+  2  ;
+DELETE FROM DEPT
+*
+1행에 오류:
+ORA-02292: 무결성 제약조건(JAEJIN.SYS_C0011959)이 위배되었습니다- 자식 레코드가 발견되었습니다 
+
+
+JAEJIN@orcl>drop table 주문;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>drop sequence e_n;
+
+시퀀스가 삭제되었습니다.
+
+JAEJIN@orcl>CREATE TABLE 주문
+  2      (주문번호 CHAR(12));
+
+테이블이 생성되었습니다.
+
+JAEJIN@orcl>create sequence e_n
+  2  increment by 1
+  3  start with 1
+  4   maxvalue 100
+  5  nocycle
+  6  nocache;
+
+시퀀스가 생성되었습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>nocache;
+SP2-0042: 알 수 없는 명령어 "nocache" - 나머지 줄 무시.
+JAEJIN@orcl>nocache;
+SP2-0042: 알 수 없는 명령어 "nocache" - 나머지 줄 무시.
+JAEJIN@orcl>nocache;
+SP2-0042: 알 수 없는 명령어 "nocache" - 나머지 줄 무시.
+JAEJIN@orcl>nocache;
+SP2-0042: 알 수 없는 명령어 "nocache" - 나머지 줄 무시.
+SP2-0044: 명령어 목록을 보려면 HELP를
+빠져나가려면 EXIT를 입력하시오.
+JAEJIN@orcl>nocache;
+SP2-0042: 알 수 없는 명령어 "nocache" - 나머지 줄 무시.
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>selct * from 주문;
+SP2-0734: "selct * fr..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+JAEJIN@orcl>select * from 주문;
+
+주문번호                                                                                                                
+------------                                                                                                            
+20201015002                                                                                                             
+20201015003                                                                                                             
+20201015004                                                                                                             
+20201015005                                                                                                             
+20201015006                                                                                                             
+20201015007                                                                                                             
+20201015008                                                                                                             
+20201015009                                                                                                             
+20201015010                                                                                                             
+20201015011                                                                                                             
+20201015012                                                                                                             
+
+11 개의 행이 선택되었습니다.
+
+JAEJIN@orcl>drop table 주문;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>drop sequence e_n;
+
+시퀀스가 삭제되었습니다.
+
+JAEJIN@orcl>create sequence e_n
+  2  increment by 1
+  3  start with 1
+  4   maxvalue 100
+  5  nocycle
+  6  nocache;
+
+시퀀스가 생성되었습니다.
+
+JAEJIN@orcl>CREATE TABLE 주문
+  2      (주문번호 CHAR(12));
+
+테이블이 생성되었습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from 주문;
+
+주문번호                                                                                                                
+------------                                                                                                            
+20201015002                                                                                                             
+
+JAEJIN@orcl>drop sequence e_n;
+
+시퀀스가 삭제되었습니다.
+
+JAEJIN@orcl>drop table 주문;
+
+테이블이 삭제되었습니다.
+
+JAEJIN@orcl>create sequence e_n
+  2  increment by 1
+  3  start with 0
+  4   maxvalue 100
+  5  nocycle
+  6  nocache;
+create sequence e_n
+*
+1행에 오류:
+ORA-04006: START WITH 에 MINVALUE 보다 작은 값은 지정할 수 없습니다 
+
+
+JAEJIN@orcl>create sequence e_n
+  2  increment by 1
+  3  start with 0
+  4     minvalue 0
+  5   maxvalue 100
+  6  nocycle
+  7  nocache;
+
+시퀀스가 생성되었습니다.
+
+JAEJIN@orcl>CREATE TABLE 주문
+  2      (주문번호 CHAR(12));
+
+테이블이 생성되었습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from 주문;
+
+주문번호                                                                                                                
+------------                                                                                                            
+20201015001                                                                                                             
+20201015002                                                                                                             
+20201015003                                                                                                             
+20201015004                                                                                                             
+20201015005                                                                                                             
+20201015006                                                                                                             
+20201015007                                                                                                             
+20201015008                                                                                                             
+20201015009                                                                                                             
+20201015010                                                                                                             
+20201015011                                                                                                             
+
+11 개의 행이 선택되었습니다.
+
+1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+
+1. 다음과 같이 테이블 EMP_SUMMARY를 생성하시오.
+
+JAEJIN@orcl>CREATE TABLE EMP_SUMMARY (
+  2          EMPNO    NUMBER(4),
+  3          ENAME    VARCHAR2(10),
+  4          JOB      VARCHAR2(9),
+  5          INCOME   NUMBER(7, 2),
+  6          DNAME    VARCHAR2(14),
+  7  CONSTRAINT ES_PK PRIMARY KEY (EMPNO));
+
+테이블이 생성되었습니다.
+
+2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+
+2. 테이블 EMP, DEPT로부터 튜플을 삽입하시오
+
+JAEJIN@orcl>insert into EMP_SUMMARY (
+  2  SELECT e.empno, e.ename, e.job, e.sal*12+nvl(e.comm,0),d.dname
+  3  FROM emp e,(select dname, deptno
+  4  from dept) d
+  5  where e.deptno=d.deptno);
+
+15 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from emp_summary;
+
+     EMPNO ENAME      JOB           INCOME DNAME                                                                        
+---------- ---------- --------- ---------- --------------                                                               
+      7369 SMITH      CLERK           9600 RESEARCH                                                                     
+      7499 ALLEN      SALESMAN       19500 SALES                                                                        
+      7521 WARD       SALESMAN       15500 SALES                                                                        
+      7566 JONES      MANAGER        35700 RESEARCH                                                                     
+      7654 MARTIN     SALESMAN       16400 SALES                                                                        
+      7698 BLAKE      MANAGER        34200 SALES                                                                        
+      7782 CLARK      MANAGER        29400 ACCOUNTING                                                                   
+      7788 SCOTT      ANALYST        36000 RESEARCH                                                                     
+      7839 KING       PRESIDENT      60000 ACCOUNTING                                                                   
+      7844 TURNER     SALESMAN       18000 SALES                                                                        
+      7876 ADAMS      CLERK          13200 RESEARCH                                                                     
+      7900 JAMES      CLERK          11400 SALES                                                                        
+      7902 FORD       ANALYST        36000 RESEARCH                                                                     
+      7934 MILLER     CLERK          15600 ACCOUNTING                                                                   
+      7196 GREEN      SALESMAN       24000 ACCOUNTING                                                                   
+
+15 개의 행이 선택되었습니다.
+
+333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+
+3. SMITH의 연봉을 ALLEN의 연봉으로 수정하시오
+JAEJIN@orcl>UPDATE EMP_SUMMARY
+  2  SET (INCOME) = (SELECT income
+  3      FROM EMP_SUMMARY
+  4      WHERE ename = 'ALLEN')
+  5  WHERE ename = 'SMITH';
+
+1 행이 갱신되었습니다.
+
+JAEJIN@orcl>select * from emp_summary;
+
+     EMPNO ENAME      JOB           INCOME DNAME                                                                        
+---------- ---------- --------- ---------- --------------                                                               
+      7369 SMITH      CLERK          19500 RESEARCH                                                                     
+      7499 ALLEN      SALESMAN       19500 SALES                                                                        
+      7521 WARD       SALESMAN       15500 SALES                                                                        
+      7566 JONES      MANAGER        35700 RESEARCH                                                                     
+      7654 MARTIN     SALESMAN       16400 SALES                                                                        
+      7698 BLAKE      MANAGER        34200 SALES                                                                        
+      7782 CLARK      MANAGER        29400 ACCOUNTING                                                                   
+      7788 SCOTT      ANALYST        36000 RESEARCH                                                                     
+      7839 KING       PRESIDENT      60000 ACCOUNTING                                                                   
+      7844 TURNER     SALESMAN       18000 SALES                                                                        
+      7876 ADAMS      CLERK          13200 RESEARCH                                                                     
+      7900 JAMES      CLERK          11400 SALES                                                                        
+      7902 FORD       ANALYST        36000 RESEARCH                                                                     
+      7934 MILLER     CLERK          15600 ACCOUNTING                                                                   
+      7196 GREEN      SALESMAN       24000 ACCOUNTING                                                                   
+
+15 개의 행이 선택되었습니다.
+
+44444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
+44444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
+
+4. SAL이 2000 이상인 직원을 EMP_SUMMARY에서 삭제하시오
+JAEJIN@orcl>DELETE FROM EMP_SUMMARY
+  2  WHERE empno IN(select empno from emp where sal >= 2000);
+
+7 행이 삭제되었습니다.
+
+JAEJIN@orcl>select * from emp_summary;
+
+     EMPNO ENAME      JOB           INCOME DNAME                                                                        
+---------- ---------- --------- ---------- --------------                                                               
+      7369 SMITH      CLERK          19500 RESEARCH                                                                     
+      7499 ALLEN      SALESMAN       19500 SALES                                                                        
+      7521 WARD       SALESMAN       15500 SALES                                                                        
+      7654 MARTIN     SALESMAN       16400 SALES                                                                        
+      7844 TURNER     SALESMAN       18000 SALES                                                                        
+      7876 ADAMS      CLERK          13200 RESEARCH                                                                     
+      7900 JAMES      CLERK          11400 SALES                                                                        
+      7934 MILLER     CLERK          15600 ACCOUNTING                                                                   
+
+8 개의 행이 선택되었습니다.
+
+555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555
+555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555
+5. 주문번호 자동발생
+
+JAEJIN@orcl>create sequence e_n
+  2  increment by 1
+  3  start with 0
+  4     minvalue 0
+  5   maxvalue 100
+  6  nocycle
+  7  nocache;
+
+시퀀스가 생성되었습니다.
+
+JAEJIN@orcl>insert into 주문 (SELECT to_char(sysdate,'yyyymmdd')||lpad(e_n.nextval,3,'0') from dual);
+
+1 개의 행이 만들어졌습니다.
+
+JAEJIN@orcl>select * from 주문;
+
+주문번호                                                                                                                
+------------                                                                                                            
+20201015001                                                                                                             
+20201015002                                                                                                             
+20201015003                                                                                                             
+20201015004                                                                                                             
+20201015005                                                                                                             
+20201015006                                                                                                             
+20201015007                                                                                                             
+20201015008                                                                                                             
+20201015009                                                                                                             
+20201015010                                                                                                             
+20201015011                                                                                                             
+
+11 개의 행이 선택되었습니다.
+JAEJIN@orcl>spool off

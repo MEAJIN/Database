@@ -1,0 +1,162 @@
+HYEJIN>CREATE TABLE 학과 (
+  2         학과이름    CHAR(15),
+  3         학과장      NUMBER(3),
+  4         CONSTRAINT 학과_PK PRIMARY KEY (학과이름));
+
+테이블이 생성되었습니다.
+
+HYEJIN>CREATE TABLE 교수 (
+  2         교수번호  NUMBER(3),
+  3         교수이름 CHAR(10),
+  4         학과이름 CHAR(15),
+  5         CONSTRAINT 교수_PK PRIMARY KEY (교수번호),
+  6         CONSTRAINT 교수_FK FOREIGN KEY(학과이름) REFERENCES 학과(학과이름));
+
+테이블이 생성되었습니다.
+
+HYEJIN>CREATE TABLE 학생 (
+  2         학생번호  CHAR(10),
+  3         학생이름 CHAR(10),
+  4         학과이름 CHAR(15),
+  5         CONSTRAINT 학생_PK PRIMARY KEY (학생번호),
+  6         CONSTRAINT 학생_FK FOREIGN KEY(학과이름) REFERENCES 학과(학과이름));
+
+테이블이 생성되었습니다.
+
+HYEJIN>
+HYEJIN>
+HYEJIN>CREATE TABLE 과목 (
+  2         과목이름  CHAR(10),
+  3         과목구분  CHAR(10),
+  4         CONSTRAINT 과목_PK PRIMARY KEY (과목이름),
+  5         CONSTRAINT 과목_CK CHECK (과목구분 IN ('교양','학초', '전공')));
+
+테이블이 생성되었습니다.
+
+
+=====1번
+
+HYEJIN>ALTER TABLE 과목 ADD (학과이름 CHAR(15));
+
+테이블이 변경되었습니다.
+
+HYEJIN>ALTER TABLE 과목 ADD CONSTRAINT 과목_FK FOREIGN KEY(학과이름) REFERENCES 학과(학과이름);
+
+테이블이 변경되었습니다.
+
+=====2번
+HYEJIN>ALTER TABLE 과목 MODIFY (과목이름 CHAR(20));
+
+테이블이 변경되었습니다.
+
+=====3번
+ALTER TABLE 수강 DROP CONSTRAINTS 수강_CK;
+
+====4번
+HYEJIN>CREATE TABLE 담당 (
+  2         교수번호  NUMBER(3),
+  3         과목이름  CHAR(20),
+  4         CONSTRAINT 담당_PK PRIMARY KEY (교수번호, 과목이름),
+  5         CONSTRAINT 담당_교수_FK FOREIGN KEY(교수번호) REFERENCES 교수(교수번호),
+  6         CONSTRAINT 담당_과목_FK FOREIGN KEY(과목이름) REFERENCES 과목(과목이름));
+
+테이블이 생성되었습니다.
+
+HYEJIN>SELECT 학생이름, 학생번호
+  2  FROM 학생
+  3  WHERE 학생번호 IN (SELECT 학생번호 FROM 수강 WHERE 과목이름='데이터베이스');
+
+선택된 레코드가 없습니다.
+
+HYEJIN>SELECT 학생이름, 학과이름
+  2  FROM 학생
+  3  WHERE 학과이름 = (SELECT 학과이름 FROM 교수 WHERE 교수이름 = '이해각');
+
+선택된 레코드가 없습니다.
+
+HYEJIN>ALTER TABLE 수강 DROP CONTRAINT 수강_CK;
+ALTER TABLE 수강 DROP CONTRAINT 수강_CK
+                      *
+1행에 오류:
+ORA-00905: 누락된 키워드
+
+
+HYEJIN>INSERT INTO 학생 VALUES('200050101', '강감찬', '컴퓨터공학과','101');
+INSERT INTO 학생 VALUES('200050101', '강감찬', '컴퓨터공학과','101')
+            *
+1행에 오류:
+ORA-00913: 값의 수가 너무 많습니다
+
+
+HYEJIN>INSERT INTO 학생 VALUES('200050102', '이율곡', '전기공학과', '202');
+INSERT INTO 학생 VALUES('200050102', '이율곡', '전기공학과', '202')
+            *
+1행에 오류:
+ORA-00913: 값의 수가 너무 많습니다
+
+
+HYEJIN>INSERT INTO 학생 VALUES('200050103', '이순신', '전자공학과', '301');
+INSERT INTO 학생 VALUES('200050103', '이순신', '전자공학과', '301')
+            *
+1행에 오류:
+ORA-00913: 값의 수가 너무 많습니다
+
+HYEJIN>INSERT INTO 과목 VALUES('데이터베이스','전공','컴퓨터공학과');
+INSERT INTO 과목 VALUES('데이터베이스','전공','컴퓨터공학과')
+*
+1행에 오류:
+ORA-02291: 무결성 제약조건(HYEJIN.과목_FK)이 위배되었습니다- 부모 키가 없습니다
+
+
+HYEJIN>INSERT INTO 과목 VALUES('화일처리','전공','컴퓨터공학과');
+INSERT INTO 과목 VALUES('화일처리','전공','컴퓨터공학과')
+*
+1행에 오류:
+ORA-02291: 무결성 제약조건(HYEJIN.과목_FK)이 위배되었습니다- 부모 키가 없습니다
+
+
+HYEJIN>INSERT INTO 과목 VALUES('선형대수','학초','컴퓨터공학과');
+INSERT INTO 과목 VALUES('선형대수','학초','컴퓨터공학과')
+*
+1행에 오류:
+ORA-02291: 무결성 제약조건(HYEJIN.과목_FK)이 위배되었습니다- 부모 키가 없습니다
+
+
+HYEJIN>INSERT INTO 수강 VALUES('200050100','데이터베이스',80);
+INSERT INTO 수강 VALUES('200050100','데이터베이스',80)
+*
+1행에 오류:
+ORA-02291: 무결성 제약조건(HYEJIN.수강2_FK)이 위배되었습니다- 부모 키가 없습니다
+
+====== 5번 (값을 넣지 못 하여 sql문만 작성하였습니다.)
+SELECT 학생이름, 학생번호
+FROM 학생
+WHERE 학생번호 IN (SELECT 학생번호 FROM 수강 WHERE 과목이름='데이터베이스');
+
+=====6번 (값을 넣지 못 하여 sql문만 작성하였습니다.)
+SELECT 학생이름, 학과이름
+FROM 학생
+WHERE 학과이름 = (SELECT 학과이름 FROM 교수 WHERE 교수이름 = '이해각');
+
+
+/// 이건 제 테이블 목록입니다.
+HYEJIN>SELECT * FROM tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+BONUS                          TABLE
+DEPT                           TABLE
+DUMMY                          TABLE
+EMP                            TABLE
+P                              TABLE
+S                              TABLE
+SALGRADE                       TABLE
+SP                             TABLE
+과목                           TABLE
+교수                           TABLE
+담당                           TABLE
+수강                           TABLE
+학과                           TABLE
+학생                           TABLE
+
+31 개의 행이 선택되었습니다.

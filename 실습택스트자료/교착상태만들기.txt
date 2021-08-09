@@ -1,0 +1,11 @@
+∆Æ∑£¿Ëº«1
+
+update emp set sal=sal-100 where empno=7369;
+update emp set sal=sal+100 where empno=7499;
+commit;
+
+
+∆Æ∑£¿Ëº«2
+update emp set sal=sal+100 where empno=7499;
+update emp set sal=sal-100 where empno=7369;
+commit;

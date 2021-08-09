@@ -1,0 +1,138 @@
+drop table 주소록;
+drop table 카드;
+drop table 주문_선택;
+drop table 장바구니_담기;
+drop table 장바구니;
+drop table 도서;
+drop table 주문;
+drop table 회원;
+
+create table 회원(
+   회원번호 varchar(10) not null,
+   비밀번호 varchar(30) not null,
+   이름 varchar(30) not null,
+   메일 varchar(30) not null,
+   핸드폰번호 varchar(30) not null,
+   CONSTRAINT 회원_PK PRIMARY KEY (회원번호) );
+
+create table 주소록 (
+   회원번호 varchar(10) not null,
+   배송지 varchar(10) not null,
+   우편번호 varchar(10) not null,
+   기본주소 varchar(100) not null,
+   상세주소 varchar(100) not null,   
+   CONSTRAINT 주소록_PK PRIMARY KEY (회원번호, 배송지),
+   CONSTRAINT A_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호) on delete cascade,
+   CONSTRAINT 배송지_CK CHECK (배송지 IN ('집','회사')));
+
+create table 카드 (
+   회원번호 varchar(10) not null,
+   카드번호 varchar(20) not null,
+   유효기간 date not null,
+       카드종류 varchar(30) not null,
+   CONSTRAINT 카드_PK PRIMARY KEY (회원번호, 카드번호),
+   CONSTRAINT 카드_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호) on delete cascade);
+
+create table 도서 (
+   도서번호 varchar(13) not null,
+   도서명 varchar(100) not null,
+   재고량 integer not null,
+      판매가격 integer not null,
+      CONSTRAINT 도서_PK PRIMARY KEY (도서번호));
+
+create table 주문 (
+   주문번호 varchar(20) not null,
+   주문일자 date not null,
+     주문총액 integer not null,
+     주문상태 varchar(20) not null,
+   카드번호 varchar(20) not null,
+   유효기간 date not null,
+      카드종류 varchar(30) not null,
+   우편번호 varchar(10) not null,
+   기본주소 varchar(100) not null,
+   상세주소  varchar(100) not null,
+   회원번호 varchar(10) not null,
+   CONSTRAINT 주문_PK PRIMARY KEY (주문번호),
+   CONSTRAINT 주문_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호),
+   CONSTRAINT 주문상태_CK CHECK (주문상태 in('신청','발송','판매완료','취소')));
+
+create table 주문_선택 (
+   주문번호 varchar(20)not null,
+   도서번호 varchar(13) not null,
+   수량 integer not null,
+   판매가격 integer not null,
+      CONSTRAINT 주문_선택_PK PRIMARY KEY (주문번호, 도서번호),
+   CONSTRAINT 선택_주문_FK FOREIGN KEY(주문번호) REFERENCES 주문(주문번호) on delete cascade,
+   CONSTRAINT 선택_도서_FK FOREIGN KEY(도서번호) REFERENCES 도서(도서번호) on delete cascade,
+   CONSTRAINT 수량_CK CHECK (수량 >= 1));
+
+create table 장바구니(
+   바구니번호 integer not null,
+     생성일자 date not null,
+       회원번호 varchar(10) not null,
+   CONSTRAINT 장바구니_PK PRIMARY KEY (바구니번호),
+   CONSTRAINT 장바구니_회원_FK FOREIGN KEY(회원번호) REFERENCES 회원(회원번호) on delete cascade);
+
+create table 장바구니_담기 (
+   바구니번호 integer not null,
+       도서번호 varchar(13) not null,
+   수량 integer not null,
+      CONSTRAINT 담기_PK PRIMARY KEY (바구니번호, 도서번호),
+   CONSTRAINT 담기_도서_FK FOREIGN KEY(도서번호) REFERENCES 도서(도서번호) on delete cascade);
+
+INSERT INTO 도서 VALUES('978896821600','컴퓨터 네트워킹 하향식 접근', 20,   10000);
+INSERT INTO 도서 VALUES('978896821601','컴퓨터와 코딩',   20,   16000);
+INSERT INTO 도서 VALUES('978896821602','컴퓨터구조론',   20,   52000);
+INSERT INTO 도서 VALUES('978896821603','컴퓨터 구조 및 설계',   20,   31000);
+INSERT INTO 도서 VALUES('978896821604','쉽게 배우는 데이터 통신과 컴퓨터 네트워크',   20,   100000);
+INSERT INTO 도서 VALUES('978896821605','소프트웨어 중심사회의 컴퓨터개론',   20,   9800);
+INSERT INTO 도서 VALUES('978896821606','컴퓨터공학과 가니까 좋아요?',   20,   54000);
+INSERT INTO 도서 VALUES('978896821607','컴퓨터 구조와 원리 2.0',   20,   32000);
+INSERT INTO 도서 VALUES('978896821608','컴퓨터 과학이 여는 세계',   20,   35000);
+INSERT INTO 도서 VALUES('978896821609','컴퓨터 개론',   20,   24400);
+INSERT INTO 도서 VALUES('978896821610','컴퓨터조립 및 업그레이드',   20,   15555);
+INSERT INTO 도서 VALUES('978896821611','컴퓨터 활용과 실습 2016',   20,   3000);
+INSERT INTO 도서 VALUES('978896821612','컴퓨터 비전공자를 위한 R언어를 활용한 기초컴퓨터프로그래밍 ',   20,   78000);
+INSERT INTO 도서 VALUES('978896821613','구글에서 배운 직장인 실무 컴퓨터 활용 45 ',   20,   23000);
+INSERT INTO 도서 VALUES('978896821614','Mano의 컴퓨터시스템구조',   20,   19900);
+INSERT INTO 도서 VALUES('978896821615','컴퓨터 시스템',   20,   19000);
+INSERT INTO 도서 VALUES('978896821616','컴퓨터 아키텍쳐',   20,   18000);
+INSERT INTO 도서 VALUES('978896821617','2021 이기적 컴퓨터활용능력 1급 필기 기본서 (별책-기출문제)',   20,   17500);
+INSERT INTO 도서 VALUES('978896821618','마녀 위니의 새 컴퓨터',   20,   60400);
+INSERT INTO 도서 VALUES('978896821619','컴퓨터 만세력 - 소 ',   20,   20100);
+INSERT INTO 도서 VALUES('978896821620','초연결 사회를 위한 컴퓨터 개론',   20,   12000);
+INSERT INTO 도서 VALUES('978896821621','컴퓨터 만세력 - 대 ',   20,   130000);
+INSERT INTO 도서 VALUES('978896821622','컴퓨터와 인사하기 Windows 10',   20,   8000);
+INSERT INTO 도서 VALUES('978896821623','컴퓨터 시대의 통계적 추론',   20,   120000);
+INSERT INTO 도서 VALUES('978896821624','어서 와, 컴퓨터 없는 코딩은 처음이지?',   1000,   15900);
+INSERT INTO 도서 VALUES('978896821625','나의 어머니는 컴퓨터였다',   20,   40500);
+INSERT INTO 도서 VALUES('978896821626','고전 컴퓨터 알고리즘 인 파이썬',   20,   9700);
+INSERT INTO 도서 VALUES('978896821627','C언어를 활용한 기초 컴퓨터 프로그래밍',   20,   45000);
+INSERT INTO 도서 VALUES('978896821628','컴선생 여우님 컴퓨터와 진탕 놀기 ',   20,   34000);
+INSERT INTO 도서 VALUES('978896821629','컴퓨터응용 선반.밀링 기능사 필기 총정리 ',   1000,   25000);
+INSERT INTO 도서 VALUES('978896821630','머신 러닝을 활용한 컴퓨터 보안',   20,   32500);
+
+create sequence B_N
+   increment by 1
+   start with 1
+      minvalue 1
+   nocache;
+
+create sequence e_n
+   increment by 1
+   start with 1
+      minvalue 1
+   nocache;
+
+CREATE or REPLACE TRIGGER 재고갱신
+after insert ON 주문_선택 
+FOR EACH ROW  
+BEGIN
+update 도서 set 재고량 = 도서.재고량 - :new.수량 where 도서.도서번호 = :new.도서번호 ;
+END;
+/
+
+CREATE VIEW my_table as select table_name from user_tables;
+CREATE VIEW my_sequence as select sequence_name from user_sequences;
+CREATE VIEW my_trigger as select trigger_name from user_triggers;
+CREATE VIEW my_view as select view_name from user_views;

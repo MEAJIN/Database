@@ -1,0 +1,196 @@
+SQLPlus 폴더에 login.sql을 만든다(반드시 관리자 관한으로 메모장 실행)
+
+내용은 다음과 같이
+
+set linesize 120
+set sqlprompt "_USER'@'_CONNECT_IDENTIFIER>"
+show user
+select tname 테이블목록 from tab;
+
+* SqlPlus의 기동
+===========
+사용자 등록
+===========
+
+system 계정(DBA)으로만 가능
+
+사용자명 : system
+비밀번호 : Manager7083 (오라클 설치 시 부여한 비번으로)
+
+1. 우선 테이블스페이스를 따로 만든다
+  
+  CREATE TABLESPACE student
+         DATAFILE 'student.dbf' SIZE 500M
+         DEFAULT STORAGE
+             (INITIAL    100K
+              NEXT      100K
+              MINEXTENTS 2
+              MAXEXTENTS 50
+              PCTINCREASE 50);
+
+     * INITIAL : 테이블 스페이스의 맨 첫번째 Extents의 크기
+     * NEXT : 다음 Extents의 크기
+     * MINEXTENTS : 생성할 Extents의 최소 값
+     * MAXEXTENTS : 생성할 Extents의 최대 값
+     * PCTINCREASE : Extents의 증가율, Default값은 50 입니다
+
+2. 사용자를 만든다(주의!! 테이블스페이스를 지정.. 그렇지 않으면 SYSTEM스페이스를 사용!)
+   (예)
+   CREATE USER 아이디 identified by 비밀번호
+       DEFAULT TABLESPACE student;
+
+
+3. 권한 등록
+
+예 : grant connect, resource to 아이디;
+
+===================
+SQL Plus로 접속하기
+===================
+사용자 이름 : 아이디
+암호 : 비밀번호
+
+혹은 SQLPlus에서 conn user1/pass1
+
+=======================
+사용자 비밀번호 바꾸기
+=======================
+
+1. 각자의 계정으로 접속한다
+2. alter user identified by new_pass;
+
+===========================
+scott계정의 테이블 만들기
+===========================
+
+CREATE TABLE DEPT
+       (DEPTNO NUMBER(2) PRIMARY KEY,
+        DNAME VARCHAR2(14),
+        LOC VARCHAR2(13) );
+
+
+INSERT INTO DEPT VALUES (10, 'ACCOUNTING', 'NEW YORK');
+INSERT INTO DEPT VALUES (20, 'RESEARCH',   'DALLAS');
+INSERT INTO DEPT VALUES (30, 'SALES',      'CHICAGO');
+INSERT INTO DEPT VALUES (40, 'OPERATIONS', 'BOSTON');
+
+
+
+
+CREATE TABLE EMP
+       (EMPNO NUMBER(4) PRIMARY KEY,
+        ENAME VARCHAR2(10),
+        JOB VARCHAR2(9),
+        MGR NUMBER(4),
+        HIREDATE DATE,
+        SAL NUMBER(7, 2),
+        COMM NUMBER(7, 2),
+        DEPTNO NUMBER(2) NOT NULL REFERENCES DEPT(DEPTNO));
+
+
+INSERT INTO EMP VALUES (7369, 'SMITH',  'CLERK',     7902, '80-12-17',  800, NULL, 20);
+INSERT INTO EMP VALUES (7499, 'ALLEN',  'SALESMAN',  7698, '81-02-20', 1600,  300, 30);
+INSERT INTO EMP VALUES (7521, 'WARD',   'SALESMAN',  7698, '81-02-22', 1250,  500, 30);
+INSERT INTO EMP VALUES (7566, 'JONES',  'MANAGER',   7839, '81-04-02', 2975, NULL, 20);
+INSERT INTO EMP VALUES (7654, 'MARTIN', 'SALESMAN',  7698, '81-09-28', 1250, 1400, 30);
+INSERT INTO EMP VALUES (7698, 'BLAKE',  'MANAGER',   7839, '81-05-01',  2850, NULL, 30);
+INSERT INTO EMP VALUES (7782, 'CLARK',  'MANAGER',   7839, '81-09-09',  2450, NULL, 10);
+INSERT INTO EMP VALUES (7788, 'SCOTT',  'ANALYST',   7566, '82-12-09', 3000, NULL, 20);
+INSERT INTO EMP VALUES (7839, 'KING',   'PRESIDENT', NULL, '81-11-17', 5000, NULL, 10);
+INSERT INTO EMP VALUES (7844, 'TURNER', 'SALESMAN',  7698, '81-09-08',  1500,    0, 30);
+INSERT INTO EMP VALUES (7876, 'ADAMS',  'CLERK',     7788, '83-01-12', 1100, NULL, 20);
+INSERT INTO EMP VALUES (7900, 'JAMES',  'CLERK',     7698, '81-12-03',   950, NULL, 30);
+INSERT INTO EMP VALUES (7902, 'FORD',   'ANALYST',   7566, '81-12-03',  3000, NULL, 20);
+INSERT INTO EMP VALUES (7934, 'MILLER', 'CLERK',     7782, '82-01-23', 1300, NULL, 10);
+
+
+CREATE TABLE BONUS
+        (ENAME VARCHAR2(10),
+         JOB   VARCHAR2(9),
+         SAL   NUMBER,
+         COMM  NUMBER);
+
+
+CREATE TABLE SALGRADE
+        (GRADE NUMBER,
+         LOSAL NUMBER,
+         HISAL NUMBER);
+
+
+INSERT INTO SALGRADE VALUES (1,  700, 1200);
+INSERT INTO SALGRADE VALUES (2, 1201, 1400);
+INSERT INTO SALGRADE VALUES (3, 1401, 2000);
+INSERT INTO SALGRADE VALUES (4, 2001, 3000);
+INSERT INTO SALGRADE VALUES (5, 3001, 9999);
+
+CREATE TABLE DUMMY
+        (DUMMY NUMBER);
+INSERT INTO DUMMY VALUES (0);
+COMMIT;
+
+
+
+=====================
+질의 예제 수행 해보기
+=====================
+
+  select * from emp;
+  select * from dept;
+  select * from salgrade;
+
+=========================
+공급자-부품 테이블 만들기
+=========================
+
+CREATE TABLE S (
+       S#     CHAR(3)    PRIMARY KEY,
+       SNAME CHAR(5),
+       STATUS NUMBER(2),
+       CITY  CHAR(7));
+
+INSERT INTO S VALUES ('S1','HONG','20','SEOUL');
+INSERT INTO S VALUES ('S2','SON', '10','PUSAN');
+INSERT INTO S VALUES ('S3','PARK','30','PUSAN');
+INSERT INTO S VALUES ('S4','SHIN','20','SEOUL');
+INSERT INTO S VALUES ('S5','BAHN','30','KYUNGJU');
+
+
+CREATE TABLE P (
+       P#     CHAR(3)  NOT NULL PRIMARY KEY,
+       PNAME  CHAR(5),
+       COLOR  CHAR(5),
+       WEIGHT NUMBER(3),
+       CITY  CHAR(7));
+
+INSERT INTO P VALUES ('P1', 'NUT',   'RED',   12, 'SEOUL');
+INSERT INTO P VALUES ('P2', 'BOLT',  'GREEN', 17, 'PUSAN');
+INSERT INTO P VALUES ('P3', 'SCREW', 'BLUE',  17, 'KWANGJU');
+INSERT INTO P VALUES ('P4', 'SCREW', 'RED',   14, 'SEOUL');
+INSERT INTO P VALUES ('P5', 'CAM',   'BLUE',  12, 'PUSAN');
+INSERT INTO P VALUES ('P6', 'COCK',  'RED',   19, 'SEOUL');
+
+
+CREATE TABLE SP (
+       S#   CHAR(3),
+       P#   CHAR(3),
+       QTY  NUMBER(5),
+       PRIMARY KEY (S#,P#),
+       FOREIGN KEY(S#) REFERENCES S,
+       FOREIGN KEY(P#) REFERENCES P,
+       CHECK (QTY>10));
+
+INSERT INTO SP VALUES ('S1','P1',300);
+INSERT INTO SP VALUES ('S1','P2',200);
+INSERT INTO SP VALUES ('S1','P3',400);
+INSERT INTO SP VALUES ('S1','P4',200);
+INSERT INTO SP VALUES ('S1','P5',100);
+INSERT INTO SP VALUES ('S1','P6',100);
+INSERT INTO SP VALUES ('S2','P1',300);
+INSERT INTO SP VALUES ('S2','P2',400);
+INSERT INTO SP VALUES ('S3','P2',200);
+INSERT INTO SP VALUES ('S4','P2',200);
+INSERT INTO SP VALUES ('S4','P4',300);
+INSERT INTO SP VALUES ('S4','P5',400);
+
+
+

@@ -1,0 +1,262 @@
+
+테이블 생성 (제약조건 포함)
+NOT NULL
+UNIQUE
+PRIMARY KEY (NOT NULL + UNIQUE 이며 테이블 당 한번만 정의)
+FOREIGN KEY
+CHECK
+
+
+CREATE TABLE 학과 (
+       학과이름    CHAR(15),
+       학과장      NUMBER(3),
+       CONSTRAINT 학과_PK PRIMARY KEY (학과이름));  
+
+==============
+테이블의 변경
+==============
+ALTER TABLE 학과 ADD (사무실  CHAR(10));
+
+ALTER TABLE 학과 ADD CONSTRAINT  학과_UK UNIQUE(사무실);
+
+SELECT * FROM 학과;
+
+ALTER TABLE 학과
+MODIFY (사무실  CHAR(5));
+
+DESC 학과;
+
+ALTER TABLE 학과 ADD (행정조교  CHAR(10));
+DESC 학과;
+ALTER TABLE 학과 DROP COLUMN 행정조교;
+DESC 학과;
+
+==================================
+
+CREATE TABLE 교수 (
+       교수번호  NUMBER(3),
+       교수이름 CHAR(10),
+       학과이름 CHAR(15),
+       CONSTRAINT 교수_PK PRIMARY KEY (교수번호),
+       CONSTRAINT 교수_FK FOREIGN KEY(학과이름) REFERENCES 학과(학과이름));
+
+
+INSERT INTO 학과 VALUES ('컴퓨터공학과',101,'M609');
+INSERT INTO 학과 VALUES ('전기공학과',201,'M509');
+INSERT INTO 학과 VALUES ('전자공학과',301,'M109');
+
+INSERT INTO 교수 VALUES ('101','이해각','컴퓨터공학과');
+INSERT INTO 교수 VALUES ('102','홍인식','컴퓨터공학과');
+INSERT INTO 교수 VALUES ('103','천인국','컴퓨터공학과');
+INSERT INTO 교수 VALUES ('201','차귀수','전기공학과');
+INSERT INTO 교수 VALUES ('202','전창완','전기공학과');
+INSERT INTO 교수 VALUES ('203','임종식','전기공학과');
+INSERT INTO 교수 VALUES ('301','박광민','전자공학과');
+INSERT INTO 교수 VALUES ('302','김은성','전자공학과');
+INSERT INTO 교수 VALUES ('303','김두용','전자공학과');
+
+SELECT * FROM 학과;
+SELECT * FROM 교수;
+
+=====================================
+순환 참조 해결방법
+
+ALTER TABLE 학과 ADD CONSTRAINT 학과_FK FOREIGN KEY(학과장) REFERENCES 교수(교수번호);
+
+INSERT INTO 학과 VALUES ('기계공학과',NULL,'M209');
+
+INSERT INTO 교수 VALUES ('401','엄태준','기계공학과');
+INSERT INTO 교수 VALUES ('402','주영철','기계공학과');
+INSERT INTO 교수 VALUES ('403','이상욱','기계공학과');
+
+UPDATE 학과 SET 학과장 = '401' WHERE 학과이름='기계공학과';
+
+=====================================
+
+
+CREATE TABLE 학생 (
+       학생번호  CHAR(10),
+       학생이름 CHAR(10),
+       학과이름 CHAR(15),
+       CONSTRAINT 학생_PK PRIMARY KEY (학생번호),
+       CONSTRAINT 학생_FK FOREIGN KEY(학과이름) REFERENCES 학과(학과이름));
+
+
+CREATE TABLE 과목 (
+       과목이름  CHAR(10),
+       과목구분  CHAR(10),
+       CONSTRAINT 과목_PK PRIMARY KEY (과목이름),
+       CONSTRAINT 과목_CK CHECK (과목구분 IN ('교양','학초', '전공')));  
+
+======================================================
+과목에 학과이름(학과의 학과이름 참조)을 추가해보자
+
+과목이름의 속성타입을 CHAR(20)으로 바꿔보자
+
+======================================================
+CREATE TABLE 수강 (
+       학생번호  CHAR(10),
+       과목이름  CHAR(20),
+       성적      NUMBER(3),
+       CONSTRAINT 수강_PK PRIMARY KEY (학생번호,과목이름),
+       CONSTRAINT 수강1_FK FOREIGN KEY(학생번호) REFERENCES 학생(학생번호),
+       CONSTRAINT 수강2_FK FOREIGN KEY(과목이름) REFERENCES 과목(과목이름),
+       CONSTRAINT 수강_CK CHECK (성적 <= 100));
+
+======================================================
+
+
+INSERT INTO 학생 VALUES('200050100', '김유신', '컴퓨터공학과');
+INSERT INTO 학생 VALUES('200050101', '강감찬', '컴퓨터공학과');
+INSERT INTO 학생 VALUES('200050102', '이율곡', '전기공학과');
+INSERT INTO 학생 VALUES('200050103', '이순신', '전자공학과');
+INSERT INTO 학생 VALUES('200050104', '이사부', '전자공학과');
+INSERT INTO 학생 VALUES('200050105', '정도전', '기계공학과');
+
+SELECT * FROM 학생;
+
+INSERT INTO 과목 VALUES('데이터베이스','전공', '컴퓨터공학과');
+INSERT INTO 과목 VALUES('화일처리','전공','컴퓨터공학과');
+INSERT INTO 과목 VALUES('선형대수','학초','컴퓨터공학과');
+INSERT INTO 과목 VALUES('진로개발','교양','컴퓨터공학과');
+
+SELECT * FROM 과목;
+
+
+
+INSERT INTO 수강 VALUES('200050100','데이터베이스',80);
+INSERT INTO 수강 VALUES('200050100','화일처리',90);
+INSERT INTO 수강 VALUES('200050101','데이터베이스',70);
+INSERT INTO 수강 VALUES('200050101','화일처리',120);
+SELECT * FROM  수강;
+
+
+CONSTRAINT 수강_CK 을 삭제 해보자
+삭제 후 다음을 실행하면?
+
+INSERT INTO 수강 VALUES('200050101','화일처리',120);
+
+=============
+제약조건 보기
+============
+SELECT * FROM USER_CONSTRAINTS;
+
+SELECT CONSTRAINT_NAME, COLUMN_NAME
+FROM USER_CONS_COLUMNS
+WHERE TABLE_NAME ='학생';
+
+
+
+
+============================================================
+테이블의 삭제 : 데이터, 구조, 인덱스, 제약조건 모두 삭제됨
+롤백 불가
+
+DROP TABLE ...
+
+DROP TABLE 수강;
+DROP TABLE 과목;
+DROP TABLE 학생;
+ALTER TABLE 교수  DROP CONSTRAINT 교수_FK;
+ALTER TABLE 학과  DROP CONSTRAINT 학과_FK;
+DROP TABLE 교수;
+DROP TABLE 학과;
+
+
+데이터만 지울 때 
+
+DELETE FROM ... ROLLBACK 가능
+
+TRINCATE TABLE ... ROLLBACK 불가능
+
+
+개체(테이블, 뷰 등) 이름 변경
+
+RENAME DEPT TO DEPARTMENT;
+
+테이블에 주석문 달기
+
+COMMENT ON TABLE 수강 IS '수강명부';
+
+주석문 보기
+select * from user_tab_comments;
+
+===========================================================
+제약조건의 추가
+
+ALTER TABLE DEPT
+ADD CONSTRAINT DEPT_DEPTNO_CK CHECK(DEPTNO BETWEEN 10 AND 99);
+
+INSERT INTO DEPT VALUES(1,'MANAGER','SEOUL');
+
+제약조건의 삭제
+
+ALTER TABLE DEPT
+DROP CONSTRAINT DEPT_DEPTNO_CK;
+
+INSERT INTO DEPT VALUES(1,'MANAGER','SEOUL');
+
+제약조건의 일시적 비활성화/활성화
+
+ALTER TABLE DEPT
+DISABLE CONSTRAINT DEPT_PK CASCADE;
+
+CASCADE는 종속된 모든 제약조건을 비활성화 함
+
+ALTER TABLE DEPT
+ENABLE CONSTRAINT DEPT_PK CASCADE;
+
+뷰(VIEW)
+
+DB OBJECT의 종류 : 테이블, 뷰, 시퀀스, 인덱스, 동의어
+
+뷰의 목적
+1. 액세스 제한
+2. 질의를 간단히 (조인등의 질의를 미리 뷰로 정의하면 질의가 단순해짐
+3. 데이터의 독립성 보장 (테이블 구조가 바뀌어도 응용프로그램에 일정한 형식 제공)
+4. 동일한 데이터를 사용자별로 다르게 나타남 (예: USER_TABLES)
+
+CREATE VIEW EMP_10 AS
+  SELECT EMPNO, ENAME, JOB
+  FROM EMP
+  WHERE DEPTNO = 10;
+
+SELECT * FROM EMP_10;
+다음을 수행하면???
+
+UPDATE EMP_10
+SET ENAME='CCC';
+
+SELECT * FROM EMP; 
+
+뷰의 좋은 예 한가지
+
+CREATE VIEW MY_TABLE AS 
+  SELECT TABLE_NAME
+  FROM USER_TABLES;
+
+SELECT * FROM MY_TABLE;
+
+
+복합뷰
+
+create view summary as
+select a.empno,a.ename, b.dname, a.job, d.ename mgr, a.hiredate, a.sal, c.grade, a.comm
+from emp a, dept b, salgrade c, emp d
+where   (a.deptno = b.deptno)
+    and (a.sal between c.losal and c.hisal)
+    and (a.mgr=d.empno(+))
+order by a.empno;
+
+
+CREATE VIEW DEPT_SUM(NAME, MINSAL, MAXSAL, AVGSAL) AS
+   SELECT D.DNAME, MIN(E.SAL), MAX(E.SAL), AVG(E.SAL)
+   FROM EMP E, DEPT D
+   WHERE E.DEPTNO=D.DEPTNO
+   GROUP BY D.DNAME;
+
+SELECT * FROM DEPT_SUM;
+
+뷰의 삭제
+DROP VIEW EMP_10;
+DROP VIEW DEPT_SUM;

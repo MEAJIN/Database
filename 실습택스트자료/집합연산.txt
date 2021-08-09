@@ -1,0 +1,22 @@
+select ename, job from emp where job='SALESMAN';
+select ename, job from emp where sal <1500;
+select ename, job from emp where job='SALESMAN'
+UNION
+select ename, job from emp where sal <1500;
+select ename, job from emp where job='SALESMAN' OR sal <1500;
+
+select ename, job from emp where job='SALESMAN';
+select ename, job from emp where sal <1500;
+select ename, job from emp where job='SALESMAN'
+INTERSECT
+select ename, job from emp where sal <1500;
+select ename, job from emp where job='SALESMAN' AND sal <1500;
+
+select ename, job from emp where job='SALESMAN';
+select ename, job from emp where sal <1500;
+select ename, job from emp where job='SALESMAN'
+MINUS
+select ename, job from emp where sal <1500;
+select ename, job from emp where job='SALESMAN' AND NOT(sal <1500);
+
+

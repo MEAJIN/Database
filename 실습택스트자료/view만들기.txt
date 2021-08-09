@@ -1,0 +1,27 @@
+
+1. 뷰만들기
+다음을 실행해보라
+
+SELECT *
+FROM ALL_TABLES;
+
+SELECT *
+FROM USER_TABLES;
+
+다음의 뷰를 만들어보자..
+
+CREATE VIEW MY_TABLES  AS
+        SELECT TABLE_NAME,TABLESPACE_NAME
+        FROM USER_TABLES;
+
+SELECT *
+FROM MY_TABLES;
+
+
+create view summary as
+select a.empno,a.ename, b.dname, a.job, d.ename mgr, a.hiredate, a.sal, c.grade, a.comm
+from emp a, dept b, salgrade c, emp d
+where   (a.deptno = b.deptno)
+    and (a.sal between c.losal and c.hisal)
+    and (a.mgr=d.empno(+))
+order by a.empno;

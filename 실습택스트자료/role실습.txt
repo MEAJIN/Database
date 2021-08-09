@@ -1,0 +1,66 @@
+conn system/Manager7083
+
+CREATE USER lee identified by lee DEFAULT TABLESPACE student;
+CREATE USER kim identified by kim DEFAULT TABLESPACE student;
+
+grant connect, resource to lee;
+grant connect, resource to kim;
+grant create view, create role to scott with admin option;
+
+conn scott/tiger
+
+create role customer;
+grant select, update(sal) on emp to customer;
+
+grant customer to lee;
+grant select on emp to kim;
+
+conn lee/lee
+
+select * from scott.emp;
+
+update scott.emp set sal=sal+50 where empno=7369;
+
+
+conn kim/kim
+
+select * from scott.emp;
+
+update scott.emp set sal=sal+50 where empno=7369;
+
+
+conn scott/tiger
+grant update(sal) on emp to lee with grant option;
+
+conn lee/lee
+grant update(sal) on scott.emp to kim;
+
+conn kim/kim
+update scott.emp set sal=sal+50 where empno=7369;
+
+conn scott/tiger
+revoke update on emp from lee;
+
+
+conn lee/lee
+update scott.emp set sal=sal+50 where empno=7369;
+
+
+conn kim/kim
+update scott.emp set sal=sal+50 where empno=7369;
+
+
+conn scott/tiger
+revoke update on emp from lee cascade;
+
+
+conn lee/lee
+update scott.emp set sal=sal+50 where empno=7369;
+
+
+
+
+
+
+
+

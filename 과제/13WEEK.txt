@@ -1,0 +1,732 @@
+HYEJIN>conn hyejin
+비밀번호 입력:
+연결되었습니다.
+USER은 "HYEJIN"입니다
+HYEJIN>CREATE USER lee identified by lee DEFAULT TABLESPACE student;
+CREATE USER lee identified by lee DEFAULT TABLESPACE student
+                              *
+1행에 오류:
+ORA-01031: 권한이 불충분합니다
+
+
+HYEJIN>system system
+SP2-0734: "system sys..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+HYEJIN>conn system
+비밀번호 입력:
+연결되었습니다.
+USER은 "SYSTEM"입니다
+SYSTEM>CREATE USER lee identified by lee DEFAULT TABLESPACE student;
+
+사용자가 생성되었습니다.
+
+SYSTEM>CREATE USER kim identified by kim DEFAULT TABLESPACE student;
+
+사용자가 생성되었습니다.
+
+SYSTEM>grant connect, resource to lee;
+
+권한이 부여되었습니다.
+
+SYSTEM>grant connect, resource to kim;
+
+권한이 부여되었습니다.
+
+SYSTEM>grant create view, create role to scott with admin option;
+
+권한이 부여되었습니다.
+
+SYSTEM>
+SYSTEM>conn scott/tiger
+ERROR:
+ORA-28000: the account is locked
+
+
+경고: 이제는 ORACLE에 연결되어 있지 않습니다.
+>
+>create role customer;
+SP2-0640: 연결되지 않았습니다.
+>grant select, update(sal) on emp to customer;
+SP2-0640: 연결되지 않았습니다.
+>
+>grant customer to lee;
+SP2-0640: 연결되지 않았습니다.
+>grant select on emp to kim;
+SP2-0640: 연결되지 않았습니다.
+>
+>conn lee/lee
+연결되었습니다.
+USER은 "LEE"입니다
+LEE>select * from scott.emp;
+select * from scott.emp
+                    *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+LEE>update scott.emp set sal=sal+50 where empno=7369;
+update scott.emp set sal=sal+50 where empno=7369
+             *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+LEE>
+LEE>
+LEE>conn kim/kim
+연결되었습니다.
+USER은 "KIM"입니다
+KIM>select * from scott.emp;
+select * from scott.emp
+                    *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+KIM>update scott.emp set sal=sal+50 where empno=7369;
+update scott.emp set sal=sal+50 where empno=7369
+             *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+KIM>
+KIM>conn scott/tiger
+ERROR:
+ORA-28000: the account is locked
+
+
+경고: 이제는 ORACLE에 연결되어 있지 않습니다.
+>grant update(sal) on emp to lee with grant option;
+SP2-0640: 연결되지 않았습니다.
+>
+>conn lee/lee
+연결되었습니다.
+USER은 "LEE"입니다
+LEE>grant update(sal) on scott.emp to kim;
+grant update(sal) on scott.emp to kim
+                           *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+LEE>
+LEE>conn kim/kim
+연결되었습니다.
+USER은 "KIM"입니다
+KIM>update scott.emp set sal=sal+50 where empno=7369;
+update scott.emp set sal=sal+50 where empno=7369
+             *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+KIM>
+KIM>conn scott/tiger
+ERROR:
+ORA-28000: the account is locked
+
+
+경고: 이제는 ORACLE에 연결되어 있지 않습니다.
+>
+>conn kim/kim
+연결되었습니다.
+USER은 "KIM"입니다
+KIM>update scott.emp set sal=sal+50 where empno=7369;
+update scott.emp set sal=sal+50 where empno=7369
+             *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+KIM>update scott.emp set sal=sal+50 where empno=7369;
+update scott.emp set sal=sal+50 where empno=7369
+             *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+KIM>conn scott/tiger
+ERROR:
+ORA-28000: the account is locked
+
+
+경고: 이제는 ORACLE에 연결되어 있지 않습니다.
+>
+>alter user scott account unlock;
+SP2-0640: 연결되지 않았습니다.
+>conn system/a454545
+연결되었습니다.
+USER은 "SYSTEM"입니다
+SYSTEM>alter user scott account unlock;
+
+사용자가 변경되었습니다.
+
+SYSTEM>conn scoot/tiger
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+경고: 이제는 ORACLE에 연결되어 있지 않습니다.
+>conn scott/tiger
+ERROR:
+ORA-28001: the password has expired
+
+
+scott에 대한 비밀번호를 변경합니다.
+새 비밀번호:
+새 비밀번호 다시 입력:
+비밀번호가 변경되었습니다.
+연결되었습니다.
+USER은 "SCOTT"입니다
+SCOTT>select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER         7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST         7566 87/04/19       3000                    20
+      7839 KING       PRESIDENT            81/11/17       5000                    10
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30
+      7876 ADAMS      CLERK           7788 87/05/23       1100                    20
+      7900 JAMES      CLERK           7698 81/12/03        950                    30
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10
+
+14 개의 행이 선택되었습니다.
+
+SCOTT>conn system/a454545
+연결되었습니다.
+USER은 "SYSTEM"입니다
+SYSTEM>
+SYSTEM>CREATE USER lee identified by lee DEFAULT TABLESPACE student;
+CREATE USER lee identified by lee DEFAULT TABLESPACE student
+            *
+1행에 오류:
+ORA-01920: 사용자명 'LEE'(이)가 다른 사용자나 롤 이름과 상충됩니다
+
+
+SYSTEM>CREATE USER kim identified by kim DEFAULT TABLESPACE student;
+CREATE USER kim identified by kim DEFAULT TABLESPACE student
+            *
+1행에 오류:
+ORA-01920: 사용자명 'KIM'(이)가 다른 사용자나 롤 이름과 상충됩니다
+
+
+SYSTEM>
+SYSTEM>grant connect, resource to lee;
+
+권한이 부여되었습니다.
+
+SYSTEM>grant connect, resource to kim;
+
+권한이 부여되었습니다.
+
+SYSTEM>grant create view, create role to scott with admin option;
+
+권한이 부여되었습니다.
+
+SYSTEM>
+SYSTEM>conn scott/tiger
+연결되었습니다.
+USER은 "SCOTT"입니다
+SCOTT>
+SCOTT>create role customer;
+
+롤이 생성되었습니다.
+
+SCOTT>grant select, update(sal) on emp to customer;
+
+권한이 부여되었습니다.
+
+SCOTT>
+SCOTT>grant customer to lee;
+
+권한이 부여되었습니다.
+
+SCOTT>grant select on emp to kim;
+
+권한이 부여되었습니다.
+
+SCOTT>
+SCOTT>conn lee/lee
+연결되었습니다.
+USER은 "LEE"입니다
+LEE>select * from scott.emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 80/12/17        800                    20
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER         7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST         7566 87/04/19       3000                    20
+      7839 KING       PRESIDENT            81/11/17       5000                    10
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30
+      7876 ADAMS      CLERK           7788 87/05/23       1100                    20
+      7900 JAMES      CLERK           7698 81/12/03        950                    30
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10
+
+14 개의 행이 선택되었습니다.
+
+LEE>update scott.emp set sal=sal+50 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+LEE>
+LEE>
+LEE>conn kim/kim
+연결되었습니다.
+USER은 "KIM"입니다
+KIM>select * from scott.emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 80/12/17        850                    20
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30
+      7782 CLARK      MANAGER         7839 81/06/09       2450                    10
+      7788 SCOTT      ANALYST         7566 87/04/19       3000                    20
+      7839 KING       PRESIDENT            81/11/17       5000                    10
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30
+      7876 ADAMS      CLERK           7788 87/05/23       1100                    20
+      7900 JAMES      CLERK           7698 81/12/03        950                    30
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10
+
+14 개의 행이 선택되었습니다.
+
+KIM>update scott.emp set sal=sal+50 where empno=7369;
+update scott.emp set sal=sal+50 where empno=7369
+             *
+1행에 오류:
+ORA-01031: 권한이 불충분합니다
+
+
+KIM>
+KIM>conn scott/tiger
+연결되었습니다.
+USER은 "SCOTT"입니다
+SCOTT>grant update(sal) on emp to lee with grant option;
+
+권한이 부여되었습니다.
+
+SCOTT>
+SCOTT>conn lee/lee
+연결되었습니다.
+USER은 "LEE"입니다
+LEE>grant update(sal) on scott.emp to kim;
+
+권한이 부여되었습니다.
+
+LEE>
+LEE>conn kim/kim
+연결되었습니다.
+USER은 "KIM"입니다
+KIM>update scott.emp set sal=sal+50 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+KIM>
+KIM>conn scott/tiger
+연결되었습니다.
+USER은 "SCOTT"입니다
+SCOTT>revoke update on emp from lee restrict; <----테이블에 대해서는 허용 안함
+  2  revoke update on emp from lee cascade;
+revoke update on emp from lee restrict; <----테이블에 대해서는 허용 안함
+                                      *
+1행에 오류:
+ORA-00911: 문자가 부적합합니다
+
+
+SCOTT>
+SCOTT>conn lee/lee
+연결되었습니다.
+USER은 "LEE"입니다
+LEE>update scott.emp set sal=sal+50 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+LEE>
+LEE>conn kim/kim
+연결되었습니다.
+USER은 "KIM"입니다
+KIM>update scott.emp set sal=sal+50 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+KIM>
+KIM>conn scott/tiger
+연결되었습니다.
+USER은 "SCOTT"입니다
+SCOTT>drop role customer;
+
+롤이 삭제되었습니다.
+
+SCOTT>CREATE TABLE update_count
+  2               (count  NUMBER(3));
+
+테이블이 생성되었습니다.
+
+SCOTT>INSERT INTO update_count VALUES (0);
+
+1 개의 행이 만들어졌습니다.
+
+SCOTT>CREATE or REPLACE TRIGGER emp_update
+  2   BEFORE update ON emp
+  3  BEGIN
+  4  update update_count set count=count+1;
+  5  END;
+  6  /
+
+트리거가 생성되었습니다.
+
+SCOTT>update emp set sal=sal+100 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+SCOTT>select * from update_count;
+
+     COUNT
+----------
+         1
+
+SCOTT>update emp set sal=sal+1 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+SCOTT>select * from update_count;
+
+     COUNT
+----------
+         2
+
+SCOTT>update emp set sal=sal-1 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+SCOTT>select * from update_count;
+
+     COUNT
+----------
+         3
+
+SCOTT>alter trigger emp_update disable;
+
+트리거가 변경되었습니다.
+
+SCOTT>alter trigger emp_update enable;
+
+트리거가 변경되었습니다.
+
+SCOTT>CREATE or REPLACE TRIGGER S_DEL
+  2   BEFORE DELETE ON S
+  3  FOR EACH ROW
+  4  BEGIN
+  5    DELETE FROM SP
+  6    WHERE S# = :OLD.S#;
+  7  END;
+  8  /
+ BEFORE DELETE ON S
+                  *
+2행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+SCOTT>select * from S;
+select * from S
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+SCOTT>conn hyejin/a454545
+연결되었습니다.
+USER은 "HYEJIN"입니다
+HYEJIN>select * from S;
+
+S#  SNAME     STATUS CITY
+--- ----- ---------- -------
+S1  HONG          20 SEOUL
+S2  SON           10 PUSAN
+S3  PARK          30 PUSAN
+S4  SHIN          20 SEOUL
+S5  BAHN          30 KYUNGJU
+
+HYEJIN>select * from update_count;
+select * from update_count
+              *
+1행에 오류:
+ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+
+HYEJIN>CREATE TABLE update_count
+  2               (count  NUMBER(3));
+
+테이블이 생성되었습니다.
+
+HYEJIN>INSERT INTO update_count VALUES (0);
+
+1 개의 행이 만들어졌습니다.
+
+HYEJIN>
+HYEJIN>CREATE or REPLACE TRIGGER emp_update
+  2   BEFORE update ON emp
+  3  BEGIN
+  4  update update_count set count=count+1;
+  5  END;
+  6
+  7  /
+
+트리거가 생성되었습니다.
+
+HYEJIN>update emp set sal=sal+100 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+HYEJIN>select * from update_count;
+
+     COUNT
+----------
+         1
+
+HYEJIN>
+HYEJIN>select * from update_count;
+
+     COUNT
+----------
+         1
+
+HYEJIN>
+HYEJIN>CREATE or REPLACE TRIGGER S_DEL
+  2   BEFORE DELETE ON S
+  3  FOR EACH ROW
+  4  BEGIN
+  5    DELETE FROM SP
+  6    WHERE S# = :OLD.S#;
+  7  END;
+  8  /
+
+트리거가 생성되었습니다.
+
+HYEJIN>DELETE FROM S WHERE S# = 'S1';
+
+1 행이 삭제되었습니다.
+
+HYEJIN>SELECT * FROM SP;
+
+S#  P#         QTY
+--- --- ----------
+S2  P1         300
+S2  P2         400
+S3  P2         200
+S4  P2         200
+S4  P4         300
+S4  P5         400
+
+6 개의 행이 선택되었습니다.
+
+HYEJIN>CREATE OR REPLACE TRIGGER null_changer
+  2     BEFORE  INSERT ON emp
+  3   FOR EACH ROW
+  4     WHEN (NEW.sal IS NULL)
+  5     BEGIN
+  6            :NEW.sal := 0;
+  7     END;
+  8   /
+
+트리거가 생성되었습니다.
+
+HYEJIN>INSERT INTO EMP VALUES (8000, 'LEE', 'CLERK',     7782, '82-01-23', NULL, NULL, 10);
+
+1 개의 행이 만들어졌습니다.
+
+HYEJIN>
+HYEJIN>select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 80/12/17        900                    20
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30
+      7782 CCC        MANAGER         7839 81/09/09       2450                    10
+      7788 SCOTT      ANALYST         7566 82/12/09       3000                    20
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30
+      7876 ADAMS      CLERK           7788 83/01/12       1100                    20
+      7900 JAMES      CLERK           7698 81/12/03        950                    30
+      7902 CCC        ANALYST         7566 81/12/03       3000                    10
+      7934 CCC        CLERK           7782 82/01/23       1300                    10
+      8000 LEE        CLERK           7782 82/01/23          0                    10
+
+14 개의 행이 선택되었습니다.
+
+HYEJIN>CREATE OR REPLACE TRIGGER day_protection
+  2  BEFORE DELETE OR INSERT OR UPDATE ON EMP
+  3  BEGIN
+  4    IF TO_CHAR(SYSDATE, 'DAY') = ＇목요일'
+  5       THEN
+  6         RAISE_APPLICATION_ERROR(-20005, ＇목요일엔 자료수정 불가!');
+  7    END IF;
+  8  END;
+  9  /
+
+경고: 컴파일 오류와 함께 트리거가 생성되었습니다.
+
+HYEJIN>update emp set sal=sal+500 where empno=7369;
+update emp set sal=sal+500 where empno=7369
+       *
+1행에 오류:
+ORA-04098: 'HYEJIN.DAY_PROTECTION' 트리거가 부적합하며 재검증을 실패했습니다
+
+
+HYEJIN>DROP TRIGGER day_protection
+  2  ;
+
+트리거가 삭제되었습니다.
+
+HYEJIN>DROP TRIGGER null_changer;
+
+트리거가 삭제되었습니다.
+
+HYEJIN>DROP TRIGGER S_DEL;
+
+트리거가 삭제되었습니다.
+
+HYEJIN>CREATE OR REPLACE TRIGGER day_protection
+  2  BEFORE DELETE OR INSERT OR UPDATE ON EMP
+  3  BEGIN
+  4    IF TO_CHAR(SYSDATE, 'DAY') = ’목요일’
+  5       THEN
+  6         RAISE_APPLICATION_ERROR(-20005, ＇목요일엔 자료수정 불가!');
+  7    END IF;
+  8  END;
+  9  /
+
+경고: 컴파일 오류와 함께 트리거가 생성되었습니다.
+
+HYEJIN>DROP TRIGGER day_protection;
+
+트리거가 삭제되었습니다.
+
+HYEJIN>CREATE OR REPLACE TRIGGER day_protection
+  2  BEFORE DELETE OR INSERT OR UPDATE ON EMP
+  3  BEGIN
+  4    IF TO_CHAR(SYSDATE, 'DAY') = '목요일'
+  5       THEN
+  6         RAISE_APPLICATION_ERROR(-20005, '목요일엔 자료수정 불가!');
+  7    END IF;
+  8  END;
+  9  /
+
+트리거가 생성되었습니다.
+
+HYEJIN>update emp set sal=sal+500 where empno=7369;
+update emp set sal=sal+500 where empno=7369
+       *
+1행에 오류:
+ORA-20005: 목요일엔 자료수정 불가!
+ORA-06512: "HYEJIN.DAY_PROTECTION",  4행
+ORA-04088: 트리거 'HYEJIN.DAY_PROTECTION'의 수행시 오류
+
+
+HYEJIN>DROP TRIGGER day_protection;
+
+트리거가 삭제되었습니다.
+
+HYEJIN>CREATE TABLE emp_log (
+  2         Emp_id NUMBER(4),
+  3         Log_date DATE,
+  4         old_salary NUMBER(7, 2),
+  5         New_salary NUMBER(7, 2),
+  6         chg_rate NUMBER(7, 2)
+  7      );
+
+테이블이 생성되었습니다.
+
+HYEJIN>CREATE OR REPLACE TRIGGER TR_LOG_SALARY
+  2      AFTER UPDATE OF SAL ON EMP
+  3      FOR EACH ROW
+  4      WHEN (new.SAL != old.SAL)
+  5  BEGIN
+  6      INSERT INTO emp_log(
+  7          Emp_id
+  8         ,Log_date
+  9         ,old_salary
+ 10         ,New_salary
+ 11         ,chg_rate
+ 12      )
+ 13      VALUES(
+ 14          :new.Empno
+ 15         ,SYSDATE
+ 16         ,:old.SAL
+ 17         ,:new.SAL
+ 18         ,(:new.SAL - :old.SAL) / :old.SAL
+ 19      );
+ 20  END;
+ 21  /
+
+트리거가 생성되었습니다.
+
+HYEJIN>update emp set sal=sal +100 where empno=7369;
+
+1 행이 갱신되었습니다.
+
+HYEJIN>select * from emp_log;
+
+    EMP_ID LOG_DATE OLD_SALARY NEW_SALARY   CHG_RATE
+---------- -------- ---------- ---------- ----------
+      7369 20/11/26        900       1000        .11
+
+HYEJIN>CREATE or REPLACE TRIGGER S_UPDATE
+  2  BEFORE
+  3  UPDATE ON S
+  4  FOR EACH ROW
+  5  BEGIN
+  6  DBMS_OUTPUT.PUT_LINE('변경 전 컬럼 값 : ' || :old.SNAME);
+  7  DBMS_OUTPUT.PUT_LINE('변경 후 컬럼 값 : ' || :new.SNAME);
+  8  END;
+  9  /
+
+트리거가 생성되었습니다.
+
+HYEJIN>SET SERVEROUTPUT ON;
+HYEJIN>UPDATE S SET SNAME='HHH' WHERE S#='S1';
+
+0 행이 갱신되었습니다.
+
+--------------------연습문제---------------------------
+
+HYEJIN>CREATE or REPLACE TRIGGER DN_UPDATE
+  2  BEFORE
+  3  UPDATE ON DEPT
+  4  FOR EACH ROW
+  5  BEGIN
+  6  DBMS_OUTPUT.PUT_LINE('변경 전 부서명값 : ' || :old.DNAME);
+  7  DBMS_OUTPUT.PUT_LINE('변경 후 부서명값 : ' || :new.DNAME);
+  8  END;
+  9  /
+
+트리거가 생성되었습니다.
+
+HYEJIN>SET SERVEROUTPUT ON;
+HYEJIN>UPDATE dept SET dname = '총무부' WHERE deptno = 30;
+변경 전 부서명값 : SALES
+변경 후 부서명값 : 총무부
+
+1 행이 갱신되었습니다.
+
+HYEJIN>

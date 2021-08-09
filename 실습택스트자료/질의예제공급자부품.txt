@@ -1,0 +1,343 @@
+CREATE TABLE S (
+       S#     CHAR(3)    PRIMARY KEY,
+       SNAME CHAR(5),
+       STATUS NUMBER(2),
+       CITY  CHAR(7));
+
+CREATE TABLE SP (
+       S#   CHAR(3)    NOT NULL REFERENCES S(S#),
+       P#   CHAR(3)    NOT NULL REFERENCES P(P#),
+       QTY  NUMBER(5),
+       PRIMARY KEY (S#,P#),
+       CHECK (QTY>10));
+
+혹은
+
+CREATE TABLE SP (
+       S#   CHAR(3),
+       P#   CHAR(3),
+       QTY  NUMBER(5),
+       PRIMARY KEY (S#,P#),
+       FOREIGN KEY(S#) REFERENCES S,
+       FOREIGN KEY(P#) REFERENCES P,
+       CHECK (QTY>10));
+
+
+CREATE TABLE P (
+       P#     CHAR(3)  NOT NULL PRIMARY KEY,
+       PNAME  CHAR(5),
+       COLOR  CHAR(5),
+       WEIGHT NUMBER(3),
+       CITY  CHAR(7));
+
+INSERT INTO S VALUES ('S1','HONG','20','SEOUL');
+INSERT INTO S VALUES ('S2','SON', '10','PUSAN');
+INSERT INTO S VALUES ('S3','PARK','30','PUSAN');
+INSERT INTO S VALUES ('S4','SHIN','20','SEOUL');
+INSERT INTO S VALUES ('S5','BAHN','30','KYUNGJU');
+
+INSERT INTO SP VALUES ('S1','P1',300);
+INSERT INTO SP VALUES ('S1','P2',200);
+INSERT INTO SP VALUES ('S1','P3',400);
+INSERT INTO SP VALUES ('S1','P4',200);
+INSERT INTO SP VALUES ('S1','P5',100);
+INSERT INTO SP VALUES ('S1','P6',100);
+INSERT INTO SP VALUES ('S2','P1',300);
+INSERT INTO SP VALUES ('S2','P2',400);
+INSERT INTO SP VALUES ('S3','P2',200);
+INSERT INTO SP VALUES ('S4','P2',200);
+INSERT INTO SP VALUES ('S4','P4',300);
+INSERT INTO SP VALUES ('S4','P5',400);
+
+INSERT INTO P VALUES ('P1', 'NUT',   'RED',   12, 'SEOUL');
+INSERT INTO P VALUES ('P2', 'BOLT',  'GREEN', 17, 'PUSAN');
+INSERT INTO P VALUES ('P3', 'SCREW', 'BLUE',  17, 'KWANGJU');
+INSERT INTO P VALUES ('P4', 'SCREW', 'RED',   14, 'SEOUL');
+INSERT INTO P VALUES ('P5', 'CAM',   'BLUE',  12, 'PUSAN');
+INSERT INTO P VALUES ('P6', 'COCK',  'RED',   19, 'SEOUL');
+
+
+
+
+
+
+
+=============================================================
+질의예제 1
+"너트를 공급하는 공급자 이름"
+
+질의예제 2
+"색깔이 빨간 부품을 공급하는 공급자 이름"
+
+질의예제 3
+"부품 P2를 공급하지 않는 공급자 이름"
+
+질의예제 4
+"어떠한 부품도 공급하지 않는 공급자의 이름
+
+질의예제5
+"같은 도시에 사는 공급자 이름"
+
+질의예제 6
+"모든 부품을 공급하는 공급자의 이름"
+
+질의 예제7
+"부품별 공급량"
+
+질의 예제 8
+"총량이 500보다 큰 부품별 공급량"
+=============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+질의예제 1
+"너트를 공급하는 공급자 이름"
+
+SELECT SNAME
+FROM   S
+WHERE  S# IN
+     ( SELECT S#
+       FROM   SP
+       WHERE  P# IN
+		(SELECT P#
+		  FROM P
+		  WHERE PNAME='NUT') ) ;
+
+		  또다른 방법(JOIN을 이용하는 방법)
+SELECT SNAME
+FROM S,P,SP
+WHERE S.S#=SP.S#
+AND   P.P#=SP.P#
+AND   P.PNAME='NUT';
+
+질의예제 2
+"색깔이 빨간 부품을 공급하는 공급자 이름"
+
+SELECT SNAME
+FROM   S
+WHERE  S# IN
+     ( SELECT S#
+       FROM   SP
+       WHERE  P# IN
+            ( SELECT P#
+              FROM   P
+              WHERE  COLOR = 'RED' ) );
+
+질의예제 3
+"부품 P2를 공급하지 않는 공급자 이름"
+
+SELECT SNAME
+FROM   S
+WHERE  NOT EXISTS
+     ( SELECT *
+       FROM   SP
+       WHERE   SP.S# = S.S#
+       AND     SP.P# = 'P2');
+혹은
+
+SELECT SNAME
+FROM S
+WHERE S# NOT IN (SELECT DISTINCT S#
+                 FROM SP
+                 WHERE P# = 'P2');
+
+
+질의예제 4
+"어떠한 부품도 공급하지 않는 공급자의 이름
+
+SELECT SNAME
+FROM S
+WHERE NOT EXISTS
+   (SELECT S#
+    FROM SP
+    WHERE SP.S#=S.S#);
+
+혹은
+
+SELECT SNAME
+FROM S
+WHERE S# NOT IN (SELECT DISTINCT S#
+                 FROM SP);
+
+
+질의예제5
+"같은 도시에 사는 공급자 이름"
+
+SELECT  FIRST.SNAME,  SECOND.SNAME
+FROM    S FIRST,  S SECOND
+WHERE   FIRST.CITY = SECOND.CITY
+    AND FIRST.S# < SECOND.S#;
+
+
+질의예제 6
+"모든 부품을 공급하는 공급자의 이름"
+
+정의대로 하면
+
+SELECT SNAME
+FROM S
+WHERE S# IN 
+  ( SELECT S# FROM SP
+      MINUS
+    ( SELECT S#
+      FROM
+      ( SELECT * FROM (SELECT S# FROM SP), (SELECT P# FROM P)
+          MINUS
+        SELECT S#, P# FROM SP
+       )
+    )
+  );
+
+윗식의 의미
+우선 모든 공급자가 모든 부품을 납품한다고 가정한 SP에서 현재 SP를 빼준다
+그러면 모든부품을 납품하는 공급자만 빠지고 그렇지 못한 공급자만 남게 되는데
+이 공급자들을 S에서 제거하면 원하는 공급자만 남는다.
+이를 이용하여 S에서 이름을 찾는다.
+ 
+@@@@너무 복잡하다.@@@@@@
+
+다른 방법은?
+
+SELECT DISTINCT S.SNAME
+FROM S
+WHERE NOT EXISTS
+     (
+       (SELECT P#
+        FROM P)
+        MINUS
+       (SELECT SP.P#
+        FROM SP
+        WHERE SP.S# = S.S#)
+       );
+윗식의 의미 : 
+특정공급자를 생각해보자. 
+부품리스트에서 그 공급자가 공급하는 부품을 뺐을 때 공집합이 된다면 모든 부품을 공급한다는 의미가 됨.
+
+혹은 다음과 같이해도 무방함
+
+SELECT DISTINCT S.SNAME
+FROM S
+WHERE NOT EXISTS
+     (
+       SELECT P#
+        FROM P
+        WHERE NOT EXISTS
+         (SELECT  SP.P#
+          FROM SP
+          WHERE SP.S# = S.S#
+            AND SP.P# = P.P#)
+       );
+
+윗식의 의미
+특정공급자에 대하여 부품별 공급여부를 체크하여 공급하지 않는 부품이 하나라도 있으면 제외함.
+
+
+질의 예제7
+"부품별 공급량"
+
+SELECT P#, SUM(QTY)
+FROM SP
+GROUP BY P#;
+
+질의 예제8
+"공급자 별 공급량
+
+"총량이 500보다 큰 부품별 공급량"
+
+SELECT P#, SUM(QTY)
+FROM SP
+GROUP BY P#
+HAVING SUM(QTY)>500;
+
+
+
+======================================================
+무결성 테스트
+
+1. 개체무결성
+
+  INSERT INTO S VALUES ('S1','KWON','20','SEOUL');
+  -->PRIMARY KEY는 유일해야함
+
+  INSERT INTO S(SNAME,STATUS, CITY) VALUES ('KWON','20','SEOUL');
+  -->PRIMARY KEY는 NOT NULL 이어야 함
+
+2. 참조무결성
+
+  INSERT INTO SP VALUES ('S6','P5',400);
+  -->FOREIGN KEY는 참조하는 값과 일치해야함
+
+  DELETE FROM S
+  WHERE S#='S1';
+  -->FOREIGN KEY에 의하여 참조참조받는 KEY는 삭제할 수 없다!!!
+
+***** FOREIGN KEY OPTION   ****
+ON DELETE CASCADE (혹은 RESTRICT)
+ON UPDATE CASCADE (혹은 RESTRICT)
+
+CASCADE : 연쇄적 실행
+RESTRICT : 실행 제한 (Default)
+
+CREATE TABLE SP (
+       S#   CHAR(3),
+       P#   CHAR(3),
+       QTY  NUMBER(5),
+       PRIMARY KEY (S#,P#),
+       FOREIGN KEY(S#) REFERENCES S
+             ON DELETE CASCADE
+             ON UPDATE CASCADE,
+       FOREIGN KEY(P#) REFERENCES P
+             ON DELETE CASCADE
+             ON UPDATE CASCADE,
+       CHECK (QTY>10));
+
+3. 도메인 무결성
+
+INSERT INTO SP VALUES ('S4','P5',5);
+INSERT INTO SP VALUES ('S4','P5','A100');
+  -->도메인에서 벗어나는 값은 삽입 불가!
+
+
+CREATE VIEW ....

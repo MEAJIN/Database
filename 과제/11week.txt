@@ -1,0 +1,202 @@
+HYEJIN>CREATE VIEW EMP_10 AS
+  2    SELECT EMPNO, ENAME, JOB
+  3    FROM EMP
+  4    WHERE DEPTNO = 10;
+
+뷰가 생성되었습니다.
+
+HYEJIN>SELECT * FROM EMP_10;
+
+     EMPNO ENAME      JOB                                                                                               
+---------- ---------- ---------                                                                                         
+      7782 CCC        MANAGER                                                                                           
+      7902 CCC        ANALYST                                                                                           
+      7934 CCC        CLERK                                                                                             
+
+HYEJIN>UPDATE EMP_10
+  2  SET ENAME='CCC';
+
+3 행이 갱신되었습니다.
+
+HYEJIN>SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO                                    
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------                                    
+      7369 SMITH      CLERK           7902 80/12/17        800                    20                                    
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30                                    
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30                                    
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20                                    
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30                                    
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30                                    
+      7782 CCC        MANAGER         7839 81/09/09       2450                    10                                    
+      7788 SCOTT      ANALYST         7566 82/12/09       3000                    20                                    
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30                                    
+      7876 ADAMS      CLERK           7788 83/01/12       1100                    20                                    
+      7900 JAMES      CLERK           7698 81/12/03        950                    30                                    
+      7902 CCC        ANALYST         7566 81/12/03       3000                    10                                    
+      7934 CCC        CLERK           7782 82/01/23       1300                    10                                    
+
+13 개의 행이 선택되었습니다.
+
+HYEJIN>CREATE VIEW MY_TABLE AS
+  2    SELECT TABLE_NAME
+  3    FROM USER_TABLES;
+CREATE VIEW MY_TABLE AS
+            *
+1행에 오류:
+ORA-00955: 기존의 객체가 이름을 사용하고 있습니다. 
+
+
+HYEJIN>SELECT * FROM MY_TABLE;
+
+TABLE_NAME                                                                                                              
+------------------------------                                                                                          
+DEPT                                                                                                                    
+EMP                                                                                                                     
+BONUS                                                                                                                   
+SALGRADE                                                                                                                
+DUMMY                                                                                                                   
+S                                                                                                                       
+P                                                                                                                       
+SP                                                                                                                      
+학과                                                                                                                    
+교수                                                                                                                    
+과목                                                                                                                    
+수강                                                                                                                    
+담당                                                                                                                    
+학생                                                                                                                    
+MANAGER                                                                                                                 
+주문                                                                                                                    
+EMP_SUMMARY                                                                                                             
+
+17 개의 행이 선택되었습니다.
+
+HYEJIN>create view summary as
+  2  select a.empno,a.ename, b.dname, a.job, d.ename mgr, a.hiredate, a.sal, c.grade, a.comm
+  3  from emp a, dept b, salgrade c, emp d
+  4  where   (a.deptno = b.deptno)
+  5      and (a.sal between c.losal and c.hisal)
+  6      and (a.mgr=d.empno(+))
+  7  order by a.empno;
+
+뷰가 생성되었습니다.
+
+HYEJIN>CREATE VIEW DEPT_SUM(NAME, MINSAL, MAXSAL, AVGSAL) AS
+  2     SELECT D.DNAME, MIN(E.SAL), MAX(E.SAL), AVG(E.SAL)
+  3     FROM EMP E, DEPT D
+  4     WHERE E.DEPTNO=D.DEPTNO
+  5     GROUP BY D.DNAME;
+
+뷰가 생성되었습니다.
+
+HYEJIN>SELECT * FROM DEPT_SUM;
+
+NAME               MINSAL     MAXSAL     AVGSAL                                                                         
+-------------- ---------- ---------- ----------                                                                         
+ACCOUNTING           1300       3000       2250                                                                         
+RESEARCH              800       3000    1968.75                                                                         
+SALES                 950       2850 1566.66667                                                                         
+
+HYEJIN>
+HYEJIN>DROP VIEW EMP_10;
+
+뷰가 삭제되었습니다.
+
+HYEJIN>DROP VIEW DEPT_SUM;
+
+뷰가 삭제되었습니다.
+
+HYEJIN>DROP VIEW summary;
+
+뷰가 삭제되었습니다.
+
+HYEJIN>CREATE INDEX emp_ename_idx;
+CREATE INDEX emp_ename_idx
+                         *
+1행에 오류:
+ORA-00969: ON 키워드가 없습니다 
+
+
+HYEJIN>CREATE INDEX emp_ename_idx ON EMP(ENAME);
+
+인덱스가 생성되었습니다.
+
+HYEJIN>SELECT index_name FROM USER_INDEXES WHERE table_name='EMP';
+
+INDEX_NAME                                                                                                              
+------------------------------                                                                                          
+EMP_ENAME_IDX                                                                                                           
+SYS_C0011114                                                                                                            
+
+HYEJIN>DROP INDEX emp_ename_idx;
+
+인덱스가 삭제되었습니다.
+
+HYEJIN>create view hyejin_view as select DEPTNO, avg(SAL) AS Avarage from emp group by DEPTNO;
+
+뷰가 생성되었습니다.
+
+HYEJIN>select * from hyejin_view;
+
+    DEPTNO    AVARAGE                                                                                                   
+---------- ----------                                                                                                   
+        30 1566.66667                                                                                                   
+        20    1968.75                                                                                                   
+        10       2250                                                                                                   
+
+HYEJIN>
+HYEJIN>create view hyejin_view as select a.DEPTNO,a.Avarage,b.ENAME FROM (SELECT DEPTNO, MAX(SAL) AS Avarage from emp group by DEPTNO) a, emp b WHERE a.DEPTNO = b.DEPTNO and a.Avarage = b.SAL;
+create view hyejin_view as select a.DEPTNO,a.Avarage,b.ENAME FROM (SELECT DEPTNO, MAX(SAL) AS Avarage from emp group by DEPTNO) a, emp b WHERE a.DEPTNO = b.DEPTNO and a.Avarage = b.SAL
+            *
+1행에 오류:
+ORA-00955: 기존의 객체가 이름을 사용하고 있습니다. 
+
+
+HYEJIN>DROP VIEW hyejin_view;
+
+뷰가 삭제되었습니다.
+
+HYEJIN>create view hyejin_view as select a.DEPTNO,a.Avarage,b.ENAME FROM (SELECT DEPTNO, MAX(SAL) AS Avarage from emp group by DEPTNO) a, emp b WHERE a.DEPTNO = b.DEPTNO and a.Avarage = b.SAL;
+
+뷰가 생성되었습니다.
+
+HYEJIN>select * from hyejin_view;
+
+    DEPTNO    AVARAGE ENAME                                                                                             
+---------- ---------- ----------                                                                                        
+        30       2850 BLAKE                                                                                             
+        20       3000 SCOTT                                                                                             
+        10       3000 CCC                                                                                               
+
+HYEJIN>DROP VIEW hyejin_view;
+
+뷰가 삭제되었습니다.
+
+
+////1번/////////////////////////////////////////////
+HYEJIN>create view hyejin_view as select DEPTNO, avg(SAL) AS Avarage from emp group by DEPTNO;
+
+뷰가 생성되었습니다.
+
+HYEJIN>SELECT * FROM hyejin_view;
+
+    DEPTNO    AVARAGE
+---------- ----------
+        30 1566.66667
+        20    1968.75
+        10       2250
+
+////2번/////////////////////////////////////////////
+HYEJIN>CREATE VIEW MAX_SAL AS SELECT P.ENAME,P.MAX_SAL, Q.DNAME FROM (SELECT A.ENAME,A.DEPTNO,B.MAX_SAL FROM (SELECT DEPTNO, MAX(SAL) as MAX_SAL FROM EMP GROUP BY DEPTNO) B, EMP A WHERE A.DEPTNO = B.DEPTNO AND A.SAL = B.MAX_SAL) P, DEPT Q WHERE P.DEPTNO=Q.DEPTNO;
+
+뷰가 생성되었습니다.
+
+HYEJIN>SELECT * FROM MAX_SAL;
+
+ENAME         MAX_SAL DNAME
+---------- ---------- --------------
+BLAKE            2850 SALES
+SCOTT            3000 RESEARCH
+CCC              3000 ACCOUNTING
+
+HYEJIN>spool off

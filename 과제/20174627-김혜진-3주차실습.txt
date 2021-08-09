@@ -1,0 +1,706 @@
+HYEJIN>
+HYEJIN>SELECT empno,ename,sal,deptno
+  2  FROM emp
+  3  WHERE sal IN (SELECT  deptno, MAX(sal)
+  4                FROM emp
+  5                GROUP BY deptno);
+WHERE sal IN (SELECT  deptno, MAX(sal)
+              *
+3행에 오류:
+ORA-00913: 값의 수가 너무 많습니다 
+
+
+HYEJIN>update emp set deptno=10 where empno=7902;
+
+1 행이 갱신되었습니다.
+
+HYEJIN>SELECT empno,ename,sal,deptno
+  2  FROM emp
+  3  WHERE (deptno, sal) IN (SELECT  deptno, MAX(sal)
+  4                FROM emp
+  5                GROUP BY deptno);
+
+     EMPNO ENAME             SAL     DEPTNO                                                                             
+---------- ---------- ---------- ----------                                                                             
+      7698 BLAKE            2850         30                                                                             
+      7788 SCOTT            3000         20                                                                             
+      7839 KING             5000         10                                                                             
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1');
+where sal between (select losal from salgrade where grade='1')
+                   *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>update emp set deptno=20 where empno=7902;
+
+1 행이 갱신되었습니다.
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1');
+where sal between (select losal from salgrade where grade='1')
+                   *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+  2  
+HYEJIN>SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1) ;
+SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1) 
+                                         *
+1행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+  2  AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1);
+SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+                                         *
+1행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+  2  AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1);
+SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+                                         *
+1행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+  2  AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1);SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+  3  AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1);
+AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1);SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+                                                       *
+2행에 오류:
+ORA-00911: 문자가 부적합합니다 
+
+
+HYEJIN>SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+  2  AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1);
+SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+                                         *
+1행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1');
+where sal between (select losal from salgrade where grade='1')
+                   *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>SELECT ENAME, SAL
+  2  FROM EMP
+  3  WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = '1')
+  4  AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE = '1');
+WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = '1')
+              *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>select deptno, AVG(sal)
+  2  from emp
+  3  group by deptno
+  4  having avg(sal) = (select max(avg(sal)) from emp group by deptno);
+
+    DEPTNO   AVG(SAL)                                                                                                   
+---------- ----------                                                                                                   
+        10 2916.66667                                                                                                   
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal <= (select losal from salgrade where grade='1')
+  4  and sal >= (select hisal from salgrade where grade='1');
+where sal <= (select losal from salgrade where grade='1')
+              *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>PAIRWISE COMPARISON
+SP2-0734: "PAIRWISE C..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+HYEJIN>SELECT ename, deptno, job
+  2  FROM EMP
+  3  WHERE (deptno, job) IN ((20, 'CLERK'), (30, 'SALESMAN'));
+
+ENAME          DEPTNO JOB                                                                                               
+---------- ---------- ---------                                                                                         
+SMITH              20 CLERK                                                                                             
+ALLEN              30 SALESMAN                                                                                          
+WARD               30 SALESMAN                                                                                          
+MARTIN             30 SALESMAN                                                                                          
+TURNER             30 SALESMAN                                                                                          
+ADAMS              20 CLERK                                                                                             
+
+6 개의 행이 선택되었습니다.
+
+HYEJIN>
+HYEJIN>PAIRWISE COMPARISON
+SP2-0734: "PAIRWISE C..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+HYEJIN>SELECT ename, deptno, job
+  2  FROM EMP
+  3  WHERE deptno IN (20,30)
+  4        AND
+  5        job IN ('CLERK', 'SALESMAN');
+
+ENAME          DEPTNO JOB                                                                                               
+---------- ---------- ---------                                                                                         
+SMITH              20 CLERK                                                                                             
+ALLEN              30 SALESMAN                                                                                          
+WARD               30 SALESMAN                                                                                          
+MARTIN             30 SALESMAN                                                                                          
+TURNER             30 SALESMAN                                                                                          
+ADAMS              20 CLERK                                                                                             
+JAMES              30 CLERK                                                                                             
+
+7 개의 행이 선택되었습니다.
+
+HYEJIN>
+HYEJIN>SELECT ename, deptno, job
+  2  FROM EMP
+  3  WHERE deptno IN (20,30)
+  4        AND
+  5        job IN ('CLERK', 'SALESMAN')
+  6  
+HYEJIN>SELECT ename, deptno, job
+  2  FROM EMP
+  3  WHERE deptno IN (20,30)
+  4        AND
+  5        job IN ('CLERK', 'SALESMAN')
+  6  )
+  7  
+HYEJIN>(
+  2  SELECT ename, deptno, job
+  3  FROM EMP
+  4  WHERE deptno IN (20,30)
+  5        AND
+  6        job IN ('CLERK', 'SALESMAN')
+  7  )
+  8  
+HYEJIN>(
+  2  SELECT ename, deptno, job
+  3  FROM EMP
+  4  WHERE deptno IN (20,30)
+  5        AND
+  6        job IN ('CLERK', 'SALESMAN')
+  7  )
+  8  MINUS
+  9  (
+ 10  SELECT ename, deptno, job
+ 11  FROM EMP
+ 12  WHERE (deptno, job) IN ((20, 'CLERK'), (30, 'SALESMAN'))
+ 13  );
+
+ENAME          DEPTNO JOB                                                                                               
+---------- ---------- ---------                                                                                         
+JAMES              30 CLERK                                                                                             
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1');
+where sal between (select losal from salgrade where grade='1')
+                   *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between IN (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1');
+where sal between IN (select losal from salgrade where grade='1')
+                  *
+3행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal IN (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1');
+and (select hisal from salgrade where grade='1')
+                                               *
+4행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>select * from salgrade;
+
+     GRADE      LOSAL      HISAL                                                                                        
+---------- ---------- ----------                                                                                        
+         1        700       1200                                                                                        
+         2       1201       1400                                                                                        
+         3       1401       2000                                                                                        
+         4       2001       3000                                                                                        
+         5       3001       9999                                                                                        
+         1        700       1200                                                                                        
+         2       1201       1400                                                                                        
+         3       1401       2000                                                                                        
+         4       2001       3000                                                                                        
+         5       3001       9999                                                                                        
+
+10 개의 행이 선택되었습니다.
+
+HYEJIN>select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO                                    
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------                                    
+      7369 SMITH      CLERK           7902 80/12/17        800                    20                                    
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30                                    
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30                                    
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20                                    
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30                                    
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30                                    
+      7782 CLARK      MANAGER         7839 81/09/09       2450                    10                                    
+      7788 SCOTT      ANALYST         7566 82/12/09       3000                    20                                    
+      7839 KING       PRESIDENT            81/11/17       5000                    10                                    
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30                                    
+      7876 ADAMS      CLERK           7788 83/01/12       1100                    20                                    
+      7900 JAMES      CLERK           7698 81/12/03        950                    30                                    
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20                                    
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10                                    
+
+14 개의 행이 선택되었습니다.
+
+HYEJIN>SELECT ENAME, SAL
+  2  FROM EMP
+  3  WHERE SAL IN (SELECT HISAL FROM SALGRADE WHERE GRADE = '1')
+  4  AND SAL IN (SELECT LOSAL FROM SALGRADE WHERE GRADE = '1');
+
+선택된 레코드가 없습니다.
+
+HYEJIN>SELECT ENAME, SAL
+  2  FROM EMP
+  3  WHERE SAL IN (SELECT HISAL FROM SALGRADE WHERE GRADE = '1')
+  4  AND (SELECT LOSAL FROM SALGRADE WHERE GRADE = '1');
+AND (SELECT LOSAL FROM SALGRADE WHERE GRADE = '1')
+                                                 *
+4행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>SELECT ENAME, SAL
+  2  FROM EMP
+  3  WHERE SAL IN (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+  4  AND (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1);
+AND (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1)
+                                               *
+4행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1')
+  5  
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1');
+where sal between (select losal from salgrade where grade='1')
+                   *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal in (select losal from salgrade where grade='1')
+  4  and (select hisal from salgrade where grade='1');
+and (select hisal from salgrade where grade='1')
+                                               *
+4행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal in (select losal from salgrade where grade = '1')
+  4  and (select hisal from salgrade where grade ='1');
+and (select hisal from salgrade where grade ='1')
+                                                *
+4행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal in (select losal from salgrade where grade = '1')
+  4  and (select hisal from salgrade where grade ='1');
+and (select hisal from salgrade where grade ='1')
+                                                *
+4행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal in (select losal from salgrade where grade = '1')
+  4  and (select hisal from salgrade where grade = '1');
+and (select hisal from salgrade where grade = '1')
+                                                 *
+4행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal in (select losal from salgrade where grade = 1)
+  4  and (select hisal from salgrade where grade = 1);
+and (select hisal from salgrade where grade = 1)
+                                               *
+4행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+  2  AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE = 1);
+SELECT ENAME, SAL FROM EMP WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE = 1)
+                                         *
+1행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>select deptno, AVG(sal)
+  2  from emp
+  3  group by deptno
+  4  having avg(sal) = (select max(avg(sal)) from emp group by deptno);
+
+    DEPTNO   AVG(SAL)                                                                                                   
+---------- ----------                                                                                                   
+        10 2916.66667                                                                                                   
+
+HYEJIN>SELECT ENAME, SAL
+  2  FROM EMP
+  3  WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE IN 1)
+  4  AND SAL >= (SELECT LOSAL FROM SALGRADE WHERE GRADE IN 1);
+WHERE SAL <= (SELECT HISAL FROM SALGRADE WHERE GRADE IN 1)
+              *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between (select losal from salgrade where grade in 1)
+  4  and (select hisal from salgrade where grade = 1);
+where sal between (select losal from salgrade where grade in 1)
+                   *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between IN (select losal from salgrade where grade = 1)
+  4  and (select hisal from salgrade where grade = 1);
+where sal between IN (select losal from salgrade where grade = 1)
+                  *
+3행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between in (select losal from salgrade where grade = 1)
+  4  and (select hisal from salgrade where grade = 1
+  5  
+HYEJIN>select ename, sal
+  2  from emp
+  3  where sal between in (select losal from salgrade where grade = 1)
+  4  and (select hisal from salgrade where grade = 1);
+where sal between in (select losal from salgrade where grade = 1)
+                  *
+3행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>SELECT ENAME,SAL
+  2  FROM emp e
+  3  WHERE e.sal >= (select losal from salgrade where grade == 1)
+  4  AND e.sal <= (select hisal from salgrade where grade ==1);
+WHERE e.sal >= (select losal from salgrade where grade == 1)
+                                                        *
+3행에 오류:
+ORA-00936: 누락된 표현식 
+
+
+HYEJIN>SELECT ENAME,SAL
+  2  FROM emp e
+  3  WHERE e.sal >= (select losal from salgrade where grade = 1)
+  4  AND e.sal <= (select hisal from salgrade where grade =1);
+WHERE e.sal >= (select losal from salgrade where grade = 1)
+                *
+3행에 오류:
+ORA-01427: 단일 행 하위 질의에 2개 이상의 행이 리턴되었습니다. 
+
+
+HYEJIN>SELECT ENAME,SAL FROM emp e WHERE e.sal >= (select distinct losal from salgrade where grade = 1) AND e.sal <= (select distinct hisal from salgrade where grade =1);
+
+ENAME             SAL                                                                                                   
+---------- ----------                                                                                                   
+SMITH             800                                                                                                   
+ADAMS            1100                                                                                                   
+JAMES             950                                                                                                   
+
+HYEJIN>SELECT ENAME, SAL
+  2  FROM EMP
+  3  WHERE SAL <= (SELECT distinct HISAL FROM SALGRADE WHERE GRADE = 1)
+  4  AND SAL >= (SELECT distinct LOSAL FROM SALGRADE WHERE GRADE = 1)
+  5  
+HYEJIN>SELECT ENAME, SAL
+  2  FROM EMP
+  3  WHERE SAL <= (SELECT distinct HISAL FROM SALGRADE WHERE GRADE = 1)
+  4  AND SAL >= (SELECT distinct LOSAL FROM SALGRADE WHERE GRADE = 1);
+
+ENAME             SAL                                                                                                   
+---------- ----------                                                                                                   
+SMITH             800                                                                                                   
+ADAMS            1100                                                                                                   
+JAMES             950                                                                                                   
+
+HYEJIN>slect * from emp;
+SP2-0734: "slect * fr..."(으)로 시작되는 알 수 없는 명령 - 나머지 줄은 무시되었습니다.
+HYEJIN>select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE        SAL       COMM     DEPTNO                                    
+---------- ---------- --------- ---------- -------- ---------- ---------- ----------                                    
+      7369 SMITH      CLERK           7902 80/12/17        800                    20                                    
+      7499 ALLEN      SALESMAN        7698 81/02/20       1600        300         30                                    
+      7521 WARD       SALESMAN        7698 81/02/22       1250        500         30                                    
+      7566 JONES      MANAGER         7839 81/04/02       2975                    20                                    
+      7654 MARTIN     SALESMAN        7698 81/09/28       1250       1400         30                                    
+      7698 BLAKE      MANAGER         7839 81/05/01       2850                    30                                    
+      7782 CLARK      MANAGER         7839 81/09/09       2450                    10                                    
+      7788 SCOTT      ANALYST         7566 82/12/09       3000                    20                                    
+      7839 KING       PRESIDENT            81/11/17       5000                    10                                    
+      7844 TURNER     SALESMAN        7698 81/09/08       1500          0         30                                    
+      7876 ADAMS      CLERK           7788 83/01/12       1100                    20                                    
+      7900 JAMES      CLERK           7698 81/12/03        950                    30                                    
+      7902 FORD       ANALYST         7566 81/12/03       3000                    20                                    
+      7934 MILLER     CLERK           7782 82/01/23       1300                    10                                    
+
+14 개의 행이 선택되었습니다.
+
+HYEJIN>select empno, ename, sal
+  2  from emp
+  3  where mrg >= 0;
+where mrg >= 0
+      *
+3행에 오류:
+ORA-00904: "MRG": 부적합한 식별자 
+
+
+HYEJIN>select empno, ename, sal
+  2  from emp
+  3  where (mrg >= 0);
+where (mrg >= 0)
+       *
+3행에 오류:
+ORA-00904: "MRG": 부적합한 식별자 
+
+
+HYEJIN>select empno, ename, sal
+  2  from emp
+  3  where mgr >= 0;
+
+     EMPNO ENAME             SAL                                                                                        
+---------- ---------- ----------                                                                                        
+      7369 SMITH             800                                                                                        
+      7499 ALLEN            1600                                                                                        
+      7521 WARD             1250                                                                                        
+      7566 JONES            2975                                                                                        
+      7654 MARTIN           1250                                                                                        
+      7698 BLAKE            2850                                                                                        
+      7782 CLARK            2450                                                                                        
+      7788 SCOTT            3000                                                                                        
+      7844 TURNER           1500                                                                                        
+      7876 ADAMS            1100                                                                                        
+      7900 JAMES             950                                                                                        
+      7902 FORD             3000                                                                                        
+      7934 MILLER           1300                                                                                        
+
+13 개의 행이 선택되었습니다.
+
+HYEJIN>SELECT empno, ename, sal FROM deptno IN (select MGR FROM EMP WHERE MGR IS NOT NULL);
+SELECT empno, ename, sal FROM deptno IN (select MGR FROM EMP WHERE MGR IS NOT NULL)
+                                     *
+1행에 오류:
+ORA-00933: SQL 명령어가 올바르게 종료되지 않았습니다 
+
+
+HYEJIN>SELECT empno, ename, sal FROM deptno IN (select NVL(MGR,0) FROM EMP);
+SELECT empno, ename, sal FROM deptno IN (select NVL(MGR,0) FROM EMP)
+                                     *
+1행에 오류:
+ORA-00933: SQL 명령어가 올바르게 종료되지 않았습니다 
+
+
+HYEJIN>select empno, ename, sal
+  2  from emp
+  3  where mgr > 0;
+
+     EMPNO ENAME             SAL                                                                                        
+---------- ---------- ----------                                                                                        
+      7369 SMITH             800                                                                                        
+      7499 ALLEN            1600                                                                                        
+      7521 WARD             1250                                                                                        
+      7566 JONES            2975                                                                                        
+      7654 MARTIN           1250                                                                                        
+      7698 BLAKE            2850                                                                                        
+      7782 CLARK            2450                                                                                        
+      7788 SCOTT            3000                                                                                        
+      7844 TURNER           1500                                                                                        
+      7876 ADAMS            1100                                                                                        
+      7900 JAMES             950                                                                                        
+      7902 FORD             3000                                                                                        
+      7934 MILLER           1300                                                                                        
+
+13 개의 행이 선택되었습니다.
+
+HYEJIN>select empno, ename, sal
+  2  from emp
+  3  where mgr is nao null;
+where mgr is nao null
+             *
+3행에 오류:
+ORA-00908: 누락된 NULL 키워드 
+
+
+HYEJIN>select empno, ename, sal
+  2  from emp
+  3  where mgr is not null;
+
+     EMPNO ENAME             SAL                                                                                        
+---------- ---------- ----------                                                                                        
+      7369 SMITH             800                                                                                        
+      7499 ALLEN            1600                                                                                        
+      7521 WARD             1250                                                                                        
+      7566 JONES            2975                                                                                        
+      7654 MARTIN           1250                                                                                        
+      7698 BLAKE            2850                                                                                        
+      7782 CLARK            2450                                                                                        
+      7788 SCOTT            3000                                                                                        
+      7844 TURNER           1500                                                                                        
+      7876 ADAMS            1100                                                                                        
+      7900 JAMES             950                                                                                        
+      7902 FORD             3000                                                                                        
+      7934 MILLER           1300                                                                                        
+
+13 개의 행이 선택되었습니다.
+
+HYEJIN>
+HYEJIN>SELECT empno,ename,sal,deptno
+  2  FROM emp
+  3  WHERE sal IN (SELECT  deptno, MAX(sal)
+  4                FROM emp
+  5                GROUP BY deptno);   
+WHERE sal IN (SELECT  deptno, MAX(sal)
+              *
+3행에 오류:
+ORA-00913: 값의 수가 너무 많습니다 
+
+// 되지 않는 이유 : 결과 반환 컬럼이 2개라 IN에서 사용하지 못 하기 때문에.
+
+HYEJIN>update emp set deptno=10 where empno=7902;
+
+1 행이 갱신되었습니다.
+
+HYEJIN>SELECT empno,ename,sal,deptno
+  2  FROM emp
+  3  WHERE (deptno, sal) IN (SELECT  deptno, MAX(sal)
+  4                FROM emp
+  5                GROUP BY deptno);
+
+     EMPNO ENAME             SAL     DEPTNO                                                                             
+---------- ---------- ---------- ----------                                                                             
+      7698 BLAKE            2850         30                                                                             
+      7788 SCOTT            3000         20                                                                             
+      7839 KING             5000         10                                                                             
+
+HYEJIN>SELECT ENAME,SAL
+  2  FROM emp e
+  3  WHERE e.sal >= (select distinct losal from salgrade where grade = 1)
+  4  AND e.sal <= (select distinct hisal from salgrade where grade =1);
+
+ENAME             SAL                                                                                                   
+---------- ----------                                                                                                   
+SMITH             800                                                                                                   
+ADAMS            1100                                                                                                   
+JAMES             950                                                                                                   
+
+HYEJIN>SELECT ENAME,SAL
+  2  FROM emp e
+  3  WHERE e.sal >= (select distinct losal from salgrade where grade = 1)
+  4  AND e.sal <= (select distinct hisal from salgrade where grade =1);
+
+ENAME             SAL                                                                                                   
+---------- ----------                                                                                                   
+SMITH             800                                                                                                   
+ADAMS            1100                                                                                                   
+JAMES             950                                                                                                   
+
+HYEJIN>select empno, ename, sal
+  2  from emp
+  3  where mgr > 0;
+
+     EMPNO ENAME             SAL                                                                                        
+---------- ---------- ----------                                                                                        
+      7369 SMITH             800                                                                                        
+      7499 ALLEN            1600                                                                                        
+      7521 WARD             1250                                                                                        
+      7566 JONES            2975                                                                                        
+      7654 MARTIN           1250                                                                                        
+      7698 BLAKE            2850                                                                                        
+      7782 CLARK            2450                                                                                        
+      7788 SCOTT            3000                                                                                        
+      7844 TURNER           1500                                                                                        
+      7876 ADAMS            1100                                                                                        
+      7900 JAMES             950                                                                                        
+      7902 FORD             3000                                                                                        
+      7934 MILLER           1300                                                                                        
+
+13 개의 행이 선택되었습니다.
+
+HYEJIN>
+HYEJIN>select empno, ename, sal
+  2  from emp
+  3  where mgr is not null;
+
+     EMPNO ENAME             SAL                                                                                        
+---------- ---------- ----------                                                                                        
+      7369 SMITH             800                                                                                        
+      7499 ALLEN            1600                                                                                        
+      7521 WARD             1250                                                                                        
+      7566 JONES            2975                                                                                        
+      7654 MARTIN           1250                                                                                        
+      7698 BLAKE            2850                                                                                        
+      7782 CLARK            2450                                                                                        
+      7788 SCOTT            3000                                                                                        
+      7844 TURNER           1500                                                                                        
+      7876 ADAMS            1100                                                                                        
+      7900 JAMES             950                                                                                        
+      7902 FORD             3000                                                                                        
+      7934 MILLER           1300                                                                                        
+
+13 개의 행이 선택되었습니다.
+
+HYEJIN>spol off
+SP2-0042: 알 수 없는 명령어 "spol off" - 나머지 줄 무시.
+HYEJIN>spool off
