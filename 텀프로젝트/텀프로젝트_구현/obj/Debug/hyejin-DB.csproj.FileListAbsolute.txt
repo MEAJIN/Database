@@ -1,0 +1,215 @@
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\bin\Debug\hyejin-DB.exe
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\bin\Debug\hyejin-DB.pdb
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.csprojAssemblyReference.cache
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.exe
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.pdb
+C:\Users\82107\Desktop\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\bin\Debug\hyejin-DB.exe
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\bin\Debug\hyejin-DB.pdb
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.csprojAssemblyReference.cache
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.로그인.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.exe
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin-DB.pdb
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.마이페이지.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.회원탈퇴.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)\hyejin-DB\obj\Debug\hyejin_DB.배송주소록.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\bin\Debug\hyejin-DB.exe
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\bin\Debug\hyejin-DB.pdb
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin-DB.csprojAssemblyReference.cache
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.카드관리.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.배송주소록.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.로그인.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.마이페이지.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.회원탈퇴.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin-DB.exe
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin-DB.pdb
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정_비번확인.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.바로주문.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.결제.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.결제확인.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.결제완료.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.장바구니.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.장바구니담기.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.관리자.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.주문조회취소.resources
+Z:\과제 모음\김혜진 과제 모음\DB텀프(김혜진)★\hyejin-DB\obj\Debug\hyejin_DB.취소주문내역.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+C:\Users\ZIN\Desktop\qh\hyejin-DB\bin\Debug\hyejin-DB.exe
+C:\Users\ZIN\Desktop\qh\hyejin-DB\bin\Debug\hyejin-DB.pdb
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin-DB.csprojAssemblyReference.cache
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정_비번확인.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.결제.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.결제완료.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.관리자.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.바로주문.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.결제확인.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.장바구니.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.장바구니담기.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.주문조회취소.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.카드관리.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.배송주소록.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.로그인.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.마이페이지.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.회원탈퇴.resources
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin-DB.exe
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin-DB.pdb
+Z:\★★★★★★★★★★★★★\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+Z:\★★★★★★★★★★★★★\hyejin-DB\bin\Debug\hyejin-DB.exe
+Z:\★★★★★★★★★★★★★\hyejin-DB\bin\Debug\hyejin-DB.pdb
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin-DB.csprojAssemblyReference.cache
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정_비번확인.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.결제.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.결제완료.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.관리자.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.바로주문.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.결제확인.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.장바구니.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.장바구니담기.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.주문조회취소.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.카드관리.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.배송주소록.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.로그인.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.마이페이지.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.회원탈퇴.resources
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin-DB.exe
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin-DB.pdb
+Z:\★★★★★★★★★★★★★\hyejin-DB\obj\Debug\hyejin_DB.주문취소내역.resources
+C:\Users\ZIN\Desktop\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+C:\Users\ZIN\Desktop\hyejin-DB\bin\Debug\hyejin-DB.exe
+C:\Users\ZIN\Desktop\hyejin-DB\bin\Debug\hyejin-DB.pdb
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin-DB.csprojAssemblyReference.cache
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정_비번확인.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.결제.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.결제완료.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.관리자.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.바로주문.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.결제확인.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.장바구니.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.장바구니담기.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.주문조회취소.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.주문취소내역.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.카드관리.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.배송주소록.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.로그인.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.마이페이지.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin_DB.회원탈퇴.resources
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin-DB.exe
+C:\Users\ZIN\Desktop\hyejin-DB\obj\Debug\hyejin-DB.pdb
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\bin\Debug\hyejin-DB.exe
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\bin\Debug\hyejin-DB.pdb
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin-DB.csprojAssemblyReference.cache
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정_비번확인.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.결제.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.결제완료.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.관리자.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.바로주문.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.결제확인.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.장바구니.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.장바구니담기.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.주문조회취소.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.주문취소내역.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.카드관리.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.배송주소록.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.로그인.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.마이페이지.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin_DB.회원탈퇴.resources
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin-DB.exe
+Z:\★★★★★★★★★★★★★\2\hyejin-DB\obj\Debug\hyejin-DB.pdb
+C:\Users\ZIN\Desktop\qh\hyejin-DB\obj\Debug\hyejin_DB.주문취소내역.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\bin\Debug\hyejin-DB.exe
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\bin\Debug\hyejin-DB.pdb
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin-DB.csprojAssemblyReference.cache
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정_비번확인.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.결제.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.결제완료.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.관리자.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.결제확인.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.장바구니.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.장바구니담기.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.주문조회취소.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.주문취소내역.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.카드관리.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.배송주소록.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.로그인.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.마이페이지.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.회원탈퇴.resources
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin-DB.exe
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin-DB.pdb
+Z:\★★★★★★★★★★★★★\3\hyejin-DB\obj\Debug\hyejin_DB.주문.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\bin\Debug\hyejin-DB.exe.config
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\bin\Debug\hyejin-DB.exe
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\bin\Debug\hyejin-DB.pdb
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin-DB.csproj.AssemblyReference.cache
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정_비번확인.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.개인정보_수정.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.결제.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.결제완료.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.관리자.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.주문.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.결제확인.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.장바구니.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.장바구니담기.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.주문조회취소.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.주문취소내역.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.카드관리.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.배송주소록.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.Properties.Resources.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.로그인.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.마이페이지.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.메인.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.회원가입.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin_DB.회원탈퇴.resources
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin-DB.csproj.GenerateResource.cache
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin-DB.csproj.CoreCompileInputs.cache
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin-DB.exe
+Z:\CSSHARE\과제 모음\이전 인원\(졸업(眞))김혜진 과제 모음\usb이동\연구실컴퓨터정리\DB\hyejin-DB\obj\Debug\hyejin-DB.pdb
